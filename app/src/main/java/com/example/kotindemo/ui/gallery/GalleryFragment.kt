@@ -32,8 +32,11 @@ class GalleryFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textGallery
+        val textView2: TextView = binding.textView2
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
+            textView2.text = it
+
         })
         return root
     }
