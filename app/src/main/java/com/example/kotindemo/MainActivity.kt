@@ -12,6 +12,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotindemo.databinding.ActivityMainBinding
+import android.R.menu
+import android.annotation.SuppressLint
+import androidx.appcompat.view.menu.MenuBuilder
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,9 +48,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        if (menu is MenuBuilder) {
+            val m: MenuBuilder = menu as MenuBuilder
+            m.setOptionalIconsVisible(true)
+        }
         return true
     }
 
