@@ -15,6 +15,9 @@ import com.example.kotindemo.databinding.ActivityMainBinding
 import android.R.menu
 import android.annotation.SuppressLint
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.recyclerview.widget.RecyclerView
+import com.example.kotindemo.adapter.ItemAdapter
+import com.example.kotindemo.data.Datasource
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
