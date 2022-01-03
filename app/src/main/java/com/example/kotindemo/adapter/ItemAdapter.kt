@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotindemo.R
 import com.example.kotindemo.model.DrinksPic
+import com.example.kotindemo.ui.home.HomeFragment
 
 class ItemAdapter(private val context: Context, private val dataset: List<DrinksPic>): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
@@ -27,6 +28,10 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         val item = dataset[position]
         holder.textView.text =  context.resources.getString(item.stringResourceId)
         holder.imageView.setImageResource(item.imageResourceId)
+
+        holder.imageView.setOnClickListener {
+            val action = holder.
+        }
     }
 
     override fun getItemCount()= dataset.size
