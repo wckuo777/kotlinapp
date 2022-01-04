@@ -32,7 +32,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         holder.imageView.setImageResource(item.imageResourceId)
 
         holder.imageView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment()
+            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment(homeinfo = holder.textView.text.toString())
             //it.findNavController().navigate(R.id.action_nav_home_to_homeDetailFragment)
             it.findNavController().navigate(action)
 

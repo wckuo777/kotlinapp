@@ -35,5 +35,9 @@
         android:id="@+id/homeDetailFragment"
         android:name="com.example.kotindemo.ui.home.HomeDetailFragment"
         android:label="Introduction"
-        tools:layout="@layout/fragment_home_detail" />
+        tools:layout="@layout/fragment_home_detail" >
+        <argument
+            android:name="homeinfo"
+            app:argType="string" />
+    </fragment>
 </navigation>
