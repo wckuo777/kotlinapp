@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotindemo.R
 import com.example.kotindemo.model.DrinksPic
 import com.example.kotindemo.ui.home.HomeFragment
+import com.example.kotindemo.ui.home.HomeFragmentDirections
 
 class ItemAdapter(private val context: Context, private val dataset: List<DrinksPic>): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
@@ -30,7 +32,10 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         holder.imageView.setImageResource(item.imageResourceId)
 
         holder.imageView.setOnClickListener {
-            val action = holder.
+            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment()
+            //it.findNavController().navigate(R.id.action_nav_home_to_homeDetailFragment)
+            it.findNavController().navigate(action)
+
         }
     }
 
