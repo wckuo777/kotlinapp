@@ -34,6 +34,6 @@
     <fragment
         android:id="@+id/homeDetailFragment"
         android:name="com.example.kotindemo.ui.home.HomeDetailFragment"
-        android:label="fragment_home_detail"
+        android:label="Introduction"
         tools:layout="@layout/fragment_home_detail" />
 </navigation>
