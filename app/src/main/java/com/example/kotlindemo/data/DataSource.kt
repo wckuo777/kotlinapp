@@ -1,7 +1,8 @@
-package com.example.kotindemo.data
+package com.example.kotlindemo.data
 
-import com.example.kotindemo.R
-import com.example.kotindemo.model.DrinksPic
+import com.example.kotlindemo.R
+import com.example.kotlindemo.model.DrinksPic
+
 
 class Datasource {
 

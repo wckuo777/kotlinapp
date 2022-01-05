@@ -1,4 +1,4 @@
-package com.example.kotindemo.model
+package com.example.kotlindemo.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

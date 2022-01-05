@@ -1,4 +1,4 @@
-package com.example.kotindemo.ui.home
+package com.example.kotlindemo.ui.home
 
 import android.os.Bundle
 import android.view.*
@@ -11,10 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotindemo.R
-import com.example.kotindemo.adapter.ItemAdapter
-import com.example.kotindemo.data.Datasource
-import com.example.kotindemo.databinding.FragmentHomeBinding
+
+import com.example.kotlindemo.adapter.ItemAdapter
+import com.example.kotlindemo.data.Datasource
+
+
+import com.example.kotlindemo.R
+
+import com.example.kotlindemo.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 

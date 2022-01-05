@@ -1,4 +1,4 @@
-package com.example.kotindemo
+package com.example.kotlindemo
 
 import android.os.Bundle
 import android.view.Menu
@@ -11,13 +11,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kotindemo.databinding.ActivityMainBinding
+import com.example.kotlindemo.databinding.ActivityMainBinding
 import android.R.menu
 import android.annotation.SuppressLint
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotindemo.adapter.ItemAdapter
-import com.example.kotindemo.data.Datasource
+import com.example.kotlindemo.adapter.ItemAdapter
+import com.example.kotlindemo.data.Datasource
+import com.example.kotlindemo.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_websites
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

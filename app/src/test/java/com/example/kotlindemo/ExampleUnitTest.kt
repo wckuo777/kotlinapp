@@ -1,4 +1,4 @@
-package com.example.kotindemo
+package com.example.kotlindemo
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.example.kotindemo.ui.home
+package com.example.kotlindemo.ui.home
 
 import android.view.Menu
 import androidx.appcompat.view.menu.MenuBuilder

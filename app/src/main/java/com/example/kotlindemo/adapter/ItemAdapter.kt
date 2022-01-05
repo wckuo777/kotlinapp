@@ -1,4 +1,4 @@
-package com.example.kotindemo.adapter
+package com.example.kotlindemo.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlindemo.R
+import com.example.kotlindemo.model.DrinksPic
+import com.example.kotlindemo.ui.home.HomeFragment
+import com.example.kotlindemo.ui.home.HomeFragmentDirections
 
-
-import com.example.kotindemo.model.DrinksPic
-import com.example.kotindemo.ui.home.HomeFragment
-import com.example.kotindemo.ui.home.HomeFragmentDirections
 
 class ItemAdapter(private val context: Context, private val dataset: List<DrinksPic>): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
@@ -32,7 +33,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         holder.imageView.setImageResource(item.imageResourceId)
 
         holder.imageView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment()
+            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment(homeinfo = holder.textView.text.toString())
             //it.findNavController().navigate(R.id.action_nav_home_to_homeDetailFragment)
             it.findNavController().navigate(action)
         }
@@ -42,3 +43,5 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
 
 
 }
+
+

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.kotindemo.ui.home.HomeFragment"
+        android:name="com.example.kotlindemo.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,29 +17,30 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.kotindemo.ui.gallery.GalleryFragment"
+        android:name="com.example.kotlindemo.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.kotindemo.ui.slideshow.SlideshowFragment"
+        android:name="com.example.kotlindemo.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
-    <fragment
-        android:id="@+id/nav_websites"
-        android:name="com.example.kotindemo.ui.FriendWebsites.FriendWebSiteFragment"
-        android:label="Websites"
-        tools:layout="@layout/friend_web_site_fragment" />
+
     <fragment
         android:id="@+id/homeDetailFragment"
-        android:name="com.example.kotindemo.ui.home.HomeDetailFragment"
-        
-        
+        android:name="com.example.kotlindemo.ui.home.HomeDetailFragment"
         android:label="Introduction"
-        tools:layout="@layout/fragment_home_detail" />
+        tools:layout="@layout/fragment_home_detail">
         <argument
             android:name="homeinfo"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_friendWebSites"
+        android:name="com.example.kotlindemo.ui.friendwebsites.FriendWebSitesFragment"
+        android:label="friend_web_sites_fragment"
+        tools:layout="@layout/friend_web_sites_fragment" />
+
+
 </navigation>
