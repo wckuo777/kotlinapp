@@ -2,6 +2,7 @@ package com.example.kotlindemo.data
 
 import com.example.kotlindemo.R
 import com.example.kotlindemo.model.DrinksPic
+import com.example.kotlindemo.model.JsonData
 
 
 class Datasource {
@@ -24,4 +25,6 @@ class Datasource {
             DrinksPic(R.string.a14,R.drawable.a14)
         )
     }
+
+
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.kotlindemo.R
+import com.example.kotlindemo.databinding.FragmentHomeDetailBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +26,8 @@ class HomeDetailFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var hominid: String
+    private var _binding: FragmentHomeDetailBinding ? = null
+    private val binding get() = _binding!!
 
 
 
@@ -42,7 +45,13 @@ class HomeDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_detail, container, false)
+        _binding = FragmentHomeDetailBinding.inflate(inflater, container, false)
+        return binding.root
+        //return inflater.inflate(R.layout.fragment_home_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.detailText.text = hominid
     }
 
     companion object {
