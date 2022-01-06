@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/nav_friendWebSites"
         android:name="com.example.kotlindemo.ui.friendwebsites.FriendWebSitesFragment"
-        android:label="friend_web_sites_fragment"
+        android:label="WebSite"
         tools:layout="@layout/friend_web_sites_fragment" />
 
 
