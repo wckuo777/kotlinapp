@@ -54,16 +54,16 @@ class HomeDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeDetailBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.detailText;
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+//        val textView: TextView = binding.detailText;
+//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+//            textView.text = it
+//        })
         return binding.root
         //return inflater.inflate(R.layout.fragment_home_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //binding.detailText.text = hominid
+        binding.detailText.text = hominid
 //        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
 //        })

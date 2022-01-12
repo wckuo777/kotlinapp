@@ -26,5 +26,12 @@ class Datasource {
         )
     }
 
+    fun loadDrinkDesc(): MutableMap<Int,String>{
+        return mutableMapOf(1 to "not bad",
+            2 to "good",
+            3 to "excellent"
+            )
+    }
+
 
 }

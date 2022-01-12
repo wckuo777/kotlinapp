@@ -10,21 +10,21 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="a1">a1 drink</string>
-    <string name="a2">a2 drink</string>
+    <string name="a1">a1</string>
+    <string name="a2">a2</string>
     <string name="a3">a3</string>
-    <string name="a4">a4 </string>
-    <string name="a5">a5 </string>
-    <string name="a6">a6 </string>
+    <string name="a4">a4</string>
+    <string name="a5">a5</string>
+    <string name="a6">a6</string>
     <string name="a7">a7</string>
     <string name="a8">a8</string>
 
-    <string name="a9">a9 </string>
-    <string name="a10">a10 </string>
-    <string name="a11">a11 </string>
-    <string name="a12">a12 </string>
-    <string name="a13">a13 </string>
-    <string name="a14">a14 </string>
+    <string name="a9">a9</string>
+    <string name="a10">a10</string>
+    <string name="a11">a11</string>
+    <string name="a12">a12</string>
+    <string name="a13">a13</string>
+    <string name="a14">a14</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

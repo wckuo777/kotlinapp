@@ -11,13 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.kotlindemo.adapter.ItemAdapter
 import com.example.kotlindemo.data.Datasource
-
-
 import com.example.kotlindemo.R
-
 import com.example.kotlindemo.databinding.FragmentHomeBinding
 
 
@@ -73,7 +69,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear();
+        menu.clear()
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.home, menu)
 
