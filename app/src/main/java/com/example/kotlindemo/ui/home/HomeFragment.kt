@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.recyclerView
-        val myDataset = Datasource().loadAffirmations()
+        //val myDataset = Datasource().loadAffirmations()
         // val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.adapter = ItemAdapter(view.context,myDataset)
         recyclerView.setHasFixedSize(true)

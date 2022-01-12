@@ -15,5 +15,9 @@ class HomeViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
+    // radio checkedData
+    private val _checkedData = MutableLiveData<List<Boolean>>()
+    val checkedData: LiveData<List<Boolean>> = _checkedData
+
 
 }
