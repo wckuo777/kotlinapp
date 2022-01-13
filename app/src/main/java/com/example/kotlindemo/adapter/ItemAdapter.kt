@@ -40,18 +40,14 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         val item = dataset[position]
         holder.textView.text =  context.resources.getString(item.stringResourceId)
         holder.imageView.setImageResource(item.imageResourceId)
-        holder.buttonGroup.removeAllViews()
-        for( i in 1 .. 3){
-            val rdbtn = RadioButton(context)
-            rdbtn.id = View.generateViewId()
-            rdbtn.text = myDataset2[i]
-            holder.buttonGroup.addView(rdbtn)
+        if (holder.buttonGroup.childCount ==0){
+            for( i in 1 .. 3){
+                val rdbtn = RadioButton(context)
+                rdbtn.id = View.generateViewId()
+                rdbtn.text = myDataset2[i]
+                holder.buttonGroup.addView(rdbtn)
+            }
         }
-
-
-
-
-
             //holder.button.text = myDataset2[i]
 
 
