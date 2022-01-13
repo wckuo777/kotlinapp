@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,7 +20,7 @@ import com.example.kotlindemo.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
     private var isLinearLayoutManager = true
     private lateinit var recyclerView: RecyclerView
@@ -41,8 +42,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        //homeViewModel =
+        //    ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -58,7 +59,7 @@ class HomeFragment : Fragment() {
         recyclerView = binding.recyclerView
         //val myDataset = Datasource().loadAffirmations()
         // val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.adapter = ItemAdapter(view.context,myDataset)
+        recyclerView.adapter = ItemAdapter(view.context,myDataset, homeViewModel)
         recyclerView.setHasFixedSize(true)
         chooseLayout()
     }

@@ -15,9 +15,14 @@ class HomeViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-    // radio checkedData
-    private val _checkedData = MutableLiveData<List<Boolean>>()
-    val checkedData: LiveData<List<Boolean>> = _checkedData
+
+
+    private val _drinksComment = MutableLiveData<MutableMap<Int,Int>>()
+    val drinksComment: LiveData<MutableMap<Int,Int>> = _drinksComment
+
+    fun setComment(ques: Int, rank: Int){
+        _drinksComment.value?.put(ques,rank)
+    }
 
 
 }

@@ -63,7 +63,7 @@ class HomeDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.detailText.text = hominid
+        binding.detailText.text = homeViewModel.drinksComment.value?.get(1).toString()
 //        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
 //        })
