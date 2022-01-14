@@ -10,9 +10,10 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment2"
-    }
+//    private val _text = MutableLiveData<String>().apply {
+//        value = "This is home Fragment2"
+//    }
+    private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
 
 
@@ -21,7 +22,11 @@ class HomeViewModel : ViewModel() {
     val drinksComment: LiveData<MutableMap<Int,Int>> = _drinksComment
 
     fun setComment(ques: Int, rank: Int){
-        _drinksComment.value?.put(ques,rank)
+        _drinksComment.value?.toMutableMap()?.plusAssign(Pair(ques,rank))
+    }
+
+    fun settest(){
+        _text.value= "mytest0"
     }
 
 

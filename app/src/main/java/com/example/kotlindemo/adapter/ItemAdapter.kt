@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.core.view.allViews
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
@@ -37,6 +38,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+
         val myDataset2 = Datasource().loadDrinkDesc()
         val item = dataset[position]
         holder.textView.text =  context.resources.getString(item.stringResourceId)
@@ -44,15 +46,28 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         if (holder.buttonGroup.childCount ==0){
             for( i in 1 .. 3){
                 val rdbtn = RadioButton(context)
-                rdbtn.id = View.generateViewId()
+                rdbtn.id = position
                 rdbtn.setOnClickListener{
                     viewModel.setComment(rdbtn.id,i)
+                    viewModel.settest()
                 }
                 rdbtn.text = myDataset2[i]
+                val checkedKeys = viewModel.drinksComment.value
+
+                if(checkedKeys != null){
+                    if(checkedKeys[position] == i){
+                        rdbtn.isChecked = true
+                    }
+                }
                 holder.buttonGroup.addView(rdbtn)
             }
         } else{
-            // to do put back checked data
+            // to do put back checked dat
+            val checkedKeys = viewModel.drinksComment.value
+            if(checkedKeys != null){
+                val a = checkedKeys[position]?.let { holder.buttonGroup.getChildAt(it) } as RadioButton
+                a.isChecked=true
+            }
         }
             //holder.button.text = myDataset2[i]
 
@@ -65,6 +80,11 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
     }
 
     override fun getItemCount()= dataset.size
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
 
 
 }

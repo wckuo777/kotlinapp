@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,7 +34,7 @@ class HomeDetailFragment : Fragment() {
     private lateinit var hominid: String
     private var _binding: FragmentHomeDetailBinding ? = null
     private val binding get() = _binding!!
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
 
 
@@ -50,7 +51,7 @@ class HomeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        //homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         // Inflate the layout for this fragment
         _binding = FragmentHomeDetailBinding.inflate(inflater, container, false)
 
@@ -63,9 +64,11 @@ class HomeDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.detailText.text = homeViewModel.text.value.toString()
         binding.detailText.text = homeViewModel.drinksComment.value?.get(1).toString()
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
+        //binding.detailText.text = homeViewModel.drinksComment.
+//        homeViewModel.drinksComment.observe(viewLifecycleOwner, Observer {
+//            binding.detailText.text = "abc"
 //        })
     }
 
