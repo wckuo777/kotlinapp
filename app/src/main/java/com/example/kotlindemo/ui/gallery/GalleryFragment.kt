@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.FragmentGalleryBinding
-
+import com.example.kotlindemo.ui.home.HomeViewModel
 
 
 class GalleryFragment : Fragment() {
 
     private lateinit var galleryViewModel: GalleryViewModel
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private var _binding: FragmentGalleryBinding? = null
 
     // This property is only valid between onCreateView and
@@ -31,6 +33,7 @@ class GalleryFragment : Fragment() {
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        homeViewModel.cleanComment()
         val root: View = binding.root
 
         val textView: TextView = binding.textGallery
@@ -48,3 +51,5 @@ class GalleryFragment : Fragment() {
         _binding = null
     }
 }
+
+

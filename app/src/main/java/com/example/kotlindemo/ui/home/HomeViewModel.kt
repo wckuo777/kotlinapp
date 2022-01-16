@@ -26,6 +26,10 @@ class HomeViewModel : ViewModel() {
         arr3.clear()
     }
 
+    fun cleanComment(){
+        arr3.clear()
+    }
+
 
     fun setComment(ques: Int, rank: Int){
         arr3?.put(ques,rank)

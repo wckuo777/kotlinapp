@@ -38,7 +38,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-
+        var par: String = position.toString()
         val myDataset2 = Datasource().loadDrinkDesc()
         val item = dataset[position]
         holder.textView.text =  context.resources.getString(item.stringResourceId)
@@ -94,7 +94,8 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
 
 
         holder.imageView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment(homeinfo = holder.textView.text.toString())
+
+            val action = HomeFragmentDirections.actionNavHomeToHomeDetailFragment(homeinfo = par)
             //it.findNavController().navigate(R.id.action_nav_home_to_homeDetailFragment)
             it.findNavController().navigate(action)
         }

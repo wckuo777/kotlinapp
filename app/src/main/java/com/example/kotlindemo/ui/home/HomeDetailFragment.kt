@@ -65,7 +65,13 @@ class HomeDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.detailText.text = homeViewModel.text.value.toString()
-        binding.detailText.text = homeViewModel.drinksComment.value?.get(1).toString()
+        when (homeViewModel.drinksComment.value?.get(hominid.toInt()).toString()){
+            "1" ->  binding.detailText.text = "one"
+            "2" -> binding.detailText.text = "two"
+            "3" -> binding.detailText.text = "three"
+            else -> binding.detailText.text = "You have no comment"
+        }
+        //binding.detailText.text = homeViewModel.drinksComment.value?.get(hominid.toInt()).toString()
         //binding.detailText.text = homeViewModel.drinksComment.
 //        homeViewModel.drinksComment.observe(viewLifecycleOwner, Observer {
 //            binding.detailText.text = "abc"
