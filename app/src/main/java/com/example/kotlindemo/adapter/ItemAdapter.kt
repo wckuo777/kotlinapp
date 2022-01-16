@@ -46,29 +46,50 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         if (holder.buttonGroup.childCount ==0){
             for( i in 1 .. 3){
                 val rdbtn = RadioButton(context)
-                rdbtn.id = position
+                rdbtn.id = position*10 + i
                 rdbtn.setOnClickListener{
-                    viewModel.setComment(rdbtn.id,i)
+                    viewModel.setComment(position,i)
                     viewModel.settest()
                 }
                 rdbtn.text = myDataset2[i]
-                val checkedKeys = viewModel.drinksComment.value
+                val checkedKeys = viewModel.drinksComment.value?.keys
 
                 if(checkedKeys != null){
-                    if(checkedKeys[position] == i){
-                        rdbtn.isChecked = true
+                    for (k in checkedKeys){
+                        val a= viewModel.drinksComment.value?.get(k)
+                        if (a != null && a== i && position == k) {
+                            rdbtn.isChecked = true
+                            //val bt = holder.buttonGroup.getChildAt(a) as? RadioButton
+                            //bt?.isChecked=true
+                        }
                     }
+
                 }
                 holder.buttonGroup.addView(rdbtn)
             }
-        } else{
-            // to do put back checked dat
-            val checkedKeys = viewModel.drinksComment.value
-            if(checkedKeys != null){
-                val a = checkedKeys[position]?.let { holder.buttonGroup.getChildAt(it) } as RadioButton
-                a.isChecked=true
-            }
         }
+        //else{
+            // to do put back checked dat
+            //val checkedKeys = viewModel.drinksComment.value?.keys
+            //if(checkedKeys != null){
+            //    for (k in checkedKeys){
+            //        val a= viewModel.drinksComment.value?.get(k)
+            //        if (a != null) {
+           //             val bt = holder.buttonGroup.getChildAt(a) as? RadioButton
+                        //bt?.isChecked=true
+            //        }
+            //    }
+//                if(checkedKeys.contains(position)) { val a= viewModel.drinksComment.value?.get(position)
+//                    ?.let {
+//                    holder.buttonGroup.getChildAt(
+//                        it
+//                    )
+//                } as RadioButton
+//                    a.isChecked=true
+//                }
+
+            //}
+        //}
             //holder.button.text = myDataset2[i]
 
 

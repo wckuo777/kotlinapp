@@ -17,12 +17,20 @@ class HomeViewModel : ViewModel() {
     val text: LiveData<String> = _text
 
 
-
-    private val _drinksComment = MutableLiveData<MutableMap<Int,Int>>()
+    private var _drinksComment: MutableLiveData<MutableMap<Int,Int>> = MutableLiveData()
     val drinksComment: LiveData<MutableMap<Int,Int>> = _drinksComment
 
+    private val arr3:MutableMap<Int, Int> = mutableMapOf()
+
+    init{
+        arr3.clear()
+    }
+
+
     fun setComment(ques: Int, rank: Int){
-        _drinksComment.value?.toMutableMap()?.plusAssign(Pair(ques,rank))
+        arr3?.put(ques,rank)
+        _drinksComment.value = arr3
+
     }
 
     fun settest(){
@@ -31,3 +39,5 @@ class HomeViewModel : ViewModel() {
 
 
 }
+
+
