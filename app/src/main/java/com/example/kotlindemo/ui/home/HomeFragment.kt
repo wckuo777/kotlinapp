@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -84,7 +85,7 @@ class HomeFragment : Fragment() {
      * Sets the LayoutManager for the [RecyclerView] based on the desired orientation of the list.
      */
     private fun chooseLayout() {
-        recyclerView.setItemViewCacheSize(14)
+        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
         if (isLinearLayoutManager) {
             recyclerView.adapter = ItemAdapter(requireContext(),myDataset, homeViewModel, isLinearLayoutManager)
             recyclerView.layoutManager = LinearLayoutManager(context)
