@@ -32,7 +32,7 @@ class HomeViewModel : ViewModel() {
 
 
     fun setComment(ques: Int, rank: Int){
-        arr3?.put(ques,rank)
+        arr3.plusAssign(Pair(ques,rank))
         _drinksComment.value = arr3
 
     }

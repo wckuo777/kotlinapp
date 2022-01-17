@@ -9,6 +9,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.view.allViews
+import androidx.core.view.children
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
@@ -52,12 +53,14 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
         val item = dataset[position]
         holder.textView.text =  context.resources.getString(item.stringResourceId)
         holder.imageView.setImageResource(item.imageResourceId)
+
         if (holder.buttonGroup.childCount ==0){
             for( i in 1 .. 3){
                 val rdbtn = RadioButton(context)
-                rdbtn.id = position*10 + i
+                rdbtn.id = holder.adapterPosition*10 + i
+
                 rdbtn.setOnClickListener{
-                    viewModel.setComment(position,i)
+                    viewModel.setComment(holder.adapterPosition,i)
                     viewModel.settest()
                 }
                 rdbtn.text = myDataset2[i]
@@ -66,7 +69,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
                 if(checkedKeys != null){
                     for (k in checkedKeys){
                         val a= viewModel.drinksComment.value?.get(k)
-                        if (a != null && a== i && position == k) {
+                        if (a != null && a== i && holder.adapterPosition == k) {
                             rdbtn.isChecked = true
                             //val bt = holder.buttonGroup.getChildAt(a) as? RadioButton
                             //bt?.isChecked=true
@@ -112,10 +115,38 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
 
     override fun getItemCount()= dataset.size
 
-    override fun getItemViewType(position: Int): Int {
+//    override fun onViewRecycled(holder: ItemViewHolder) {
+//        holder.buttonGroup.clearCheck() // - this line do the trick
+//        val checkedKeys = viewModel.drinksComment.value?.keys
+//
+//
+//                if(checkedKeys != null){
+//                    for (k in checkedKeys){
+//                        val a= viewModel.drinksComment.value?.get(k)
+//                        if (a != null && holder.layoutPosition == k) {
+//                            holder.buttonGroup.check(a)
+//                        }
+//                    }
+//
+//                }
+//
+//        super.onViewRecycled(holder)
+//    }
 
-        return position
-    }
+//    override fun getItemViewType(position: Int): Int {
+//
+//        return position
+//    }
+
+//    override fun setHasStableIds(hasStableIds: Boolean) {
+//        super.setHasStableIds(true)
+//    }
+   //https://stackoverflow.com/questions/32427889/checkbox-in-recyclerview-keeps-on-checking-different-items
+//    override fun onViewRecycled(holder: ItemViewHolder) {
+//        super.onViewRecycled(holder)
+//        //holder.buttonGroup.setOnCheckedChangeListener(null);
+//        //holder.buttonGroup.removeAllViews()
+//    }
 
 
 

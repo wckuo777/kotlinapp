@@ -84,6 +84,7 @@ class HomeFragment : Fragment() {
      * Sets the LayoutManager for the [RecyclerView] based on the desired orientation of the list.
      */
     private fun chooseLayout() {
+        recyclerView.setItemViewCacheSize(14)
         if (isLinearLayoutManager) {
             recyclerView.adapter = ItemAdapter(requireContext(),myDataset, homeViewModel, isLinearLayoutManager)
             recyclerView.layoutManager = LinearLayoutManager(context)
