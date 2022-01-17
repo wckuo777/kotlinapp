@@ -57,7 +57,8 @@ class HomeFragment : Fragment() {
         recyclerView = binding.recyclerView
         //val myDataset = Datasource().loadAffirmations()
         // val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.adapter = ItemAdapter(view.context,myDataset, homeViewModel)
+
+        //recyclerView.adapter = ItemAdapter(view.context,myDataset, homeViewModel)
         recyclerView.setHasFixedSize(true)
         chooseLayout()
     }
@@ -84,8 +85,10 @@ class HomeFragment : Fragment() {
      */
     private fun chooseLayout() {
         if (isLinearLayoutManager) {
+            recyclerView.adapter = ItemAdapter(requireContext(),myDataset, homeViewModel, isLinearLayoutManager)
             recyclerView.layoutManager = LinearLayoutManager(context)
         } else {
+            recyclerView.adapter = ItemAdapter(requireContext(),myDataset, homeViewModel, isLinearLayoutManager)
             recyclerView.layoutManager = GridLayoutManager(context, 3)
         }
         //recyclerView.adapter = ItemAdapter(context, dataset = )

@@ -19,7 +19,7 @@ import com.example.kotlindemo.ui.home.HomeFragmentDirections
 import com.example.kotlindemo.ui.home.HomeViewModel
 
 
-class ItemAdapter(private val context: Context, private val dataset: List<DrinksPic>, private val viewModel: HomeViewModel): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class ItemAdapter(private val context: Context, private val dataset: List<DrinksPic>, private val viewModel: HomeViewModel,private val customtype: Boolean): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
         val textView: TextView = view.findViewById(R.id.item_title)
         val imageView: ImageView = view.findViewById(R.id.item_image)
@@ -31,10 +31,19 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
 
-        return ItemViewHolder(adapterLayout)
+        if(customtype){
+            val adapterLayout = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_item, parent, false)
+            return ItemViewHolder(adapterLayout)
+        }else{
+            val adapterLayout = LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_item_v2, parent, false)
+            return ItemViewHolder(adapterLayout)
+        }
+
+
+
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -104,6 +113,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Drinks
     override fun getItemCount()= dataset.size
 
     override fun getItemViewType(position: Int): Int {
+
         return position
     }
 

@@ -23,7 +23,7 @@ class HomeViewModel : ViewModel() {
     private val arr3:MutableMap<Int, Int> = mutableMapOf()
 
     init{
-        arr3.clear()
+        cleanComment()
     }
 
     fun cleanComment(){
