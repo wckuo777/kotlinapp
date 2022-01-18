@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
 import android.R.menu
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.adapter.ItemAdapter
@@ -43,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->  if(destination.label == "WebSite" ){
+            Log.d("tag", "onCreate: ")
+        } }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
