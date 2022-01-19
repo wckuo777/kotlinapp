@@ -44,8 +44,10 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->  if(destination.label == "WebSite" ){
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->  if(destination.id == R.id.nav_friendWebSites ){
             Log.d("tag", "onCreate: ")
+            binding.appBarMain.fab.hide()
+            supportActionBar?.hide()
         } }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
