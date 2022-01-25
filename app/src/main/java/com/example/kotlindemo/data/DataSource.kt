@@ -2,7 +2,7 @@ package com.example.kotlindemo.data
 
 import com.example.kotlindemo.R
 import com.example.kotlindemo.model.DrinksPic
-import com.example.kotlindemo.model.JsonData
+
 
 
 class Datasource {
@@ -31,6 +31,14 @@ class Datasource {
             2 to "good",
             3 to "excellent"
             )
+    }
+
+    fun loadSpinnerItem(): LinkedHashMap<String,String>{
+        val linkedHashMap = LinkedHashMap<String, String>()
+        linkedHashMap.put("B","Ben")
+        linkedHashMap.put("M","Men")
+        linkedHashMap.put("D","Den")
+        return linkedHashMap
     }
 
 
