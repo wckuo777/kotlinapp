@@ -1,6 +1,11 @@
 package com.example.kotlindemo.ui.gallery
 
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +31,7 @@ import android.widget.Toast
 
 
 
-class GalleryFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var galleryViewModel: GalleryViewModel
     private val homeViewModel: HomeViewModel by activityViewModels()
@@ -35,6 +40,10 @@ class GalleryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    constructor(parcel: Parcel) : this() {
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,15 +71,48 @@ class GalleryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //Add countries
 
         //Add countries
+        countryList.add(SpinnerItem("0", "Select an item"))
         countryList.add(SpinnerItem("1", "India"))
         countryList.add(SpinnerItem("2", "USA"))
         countryList.add(SpinnerItem("3", "China"))
         countryList.add(SpinnerItem("4", "UK"))
-        val adp: ArrayAdapter<SpinnerItem> = ArrayAdapter<SpinnerItem>(
+        val adp: ArrayAdapter<SpinnerItem> = object: ArrayAdapter<SpinnerItem>(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             countryList
-        )
+        ){
+            override fun getDropDownView(
+                position: Int,
+                convertView: View?,
+                parent: ViewGroup
+            ): View {
+                val view:TextView = super.getDropDownView(
+                    position,
+                    convertView,
+                    parent
+                ) as TextView
+
+                // set item text bold and sans serif font
+                view.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD)
+
+                if (position == 0){
+                    // set the spinner disabled item text color
+                    view.setTextColor(Color.LTGRAY)
+                }
+
+                // set selected item style
+                if (position == spinner.selectedItemPosition){
+                    view.background = ColorDrawable(Color.parseColor("#07B2F9"))
+                }
+
+                return view
+            }
+
+//            override fun isEnabled(position: Int): Boolean {
+//                // disable the third item of spinner
+//                return position != 0
+//            }
+        }
 
         spinner.onItemSelectedListener = this
         spinner.adapter = adp
@@ -105,6 +147,10 @@ class GalleryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
 
+
+
 }
+
+
 
 
