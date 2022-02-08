@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 
 data class DrinksPic (@StringRes val stringResourceId: Int, @DrawableRes val imageResourceId: Int)
 
-class SpinnerItem(var id: String, var name: String) {
+class SpinnerItem(var id: Int, var name: String) {
 
     //to display object as a string in spinner
     override fun toString(): String {

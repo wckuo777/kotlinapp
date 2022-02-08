@@ -1,11 +1,11 @@
 package com.example.kotlindemo.ui.gallery
 
+import android.R
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,21 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.FragmentGalleryBinding
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.example.kotlindemo.data.Datasource
 import com.example.kotlindemo.model.SpinnerItem
 import android.widget.ArrayAdapter
 import android.widget.Toast
-
-
-
-
-
-
-
-
+import com.example.kotlindemo.adapter.DropdownAdapter
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -40,10 +32,6 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    constructor(parcel: Parcel) : this() {
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,28 +46,41 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         val root: View = binding.root
 
         val textView: TextView = binding.textGallery
-        val textView2: TextView = binding.textView2
+        //val textView2: TextView = binding.textView2
         val spinner: Spinner = binding.spinner
+        val spinnerSize: Spinner = binding.spinner2
 
         val arrayList1 = ArrayList<String>()
         arrayList1.add("B");
         arrayList1.add("D");
         arrayList1.add("M");
         val spinmap = Datasource().loadSpinnerItem()
+        val spinmapsize = Datasource().loadSpinnerItemSize()
 
-        val countryList: ArrayList<SpinnerItem> = ArrayList()
+        val drinkList: ArrayList<SpinnerItem> = ArrayList()
+        val drinkSizeList: ArrayList<SpinnerItem> = ArrayList()
         //Add countries
 
         //Add countries
-        countryList.add(SpinnerItem("0", "Select an item"))
-        countryList.add(SpinnerItem("1", "India"))
-        countryList.add(SpinnerItem("2", "USA"))
-        countryList.add(SpinnerItem("3", "China"))
-        countryList.add(SpinnerItem("4", "UK"))
+        for (item in spinmap){
+            drinkList.add(SpinnerItem(item.key, item.value))
+        }
+        for (itemSize in spinmapsize){
+            drinkSizeList.add(SpinnerItem(itemSize.key, itemSize.value))
+        }
+
+        val adptest: ArrayAdapter<SpinnerItem> = DropdownAdapter(requireContext(),
+            R.layout.simple_spinner_dropdown_item,
+            drinkList,spinner.selectedItemPosition)
+
+        val adptest2: ArrayAdapter<SpinnerItem> = DropdownAdapter(requireContext(),
+            R.layout.simple_spinner_dropdown_item,
+            drinkSizeList,spinnerSize.selectedItemPosition)
+
         val adp: ArrayAdapter<SpinnerItem> = object: ArrayAdapter<SpinnerItem>(
             requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
-            countryList
+            R.layout.simple_spinner_dropdown_item,
+            drinkList
         ){
             override fun getDropDownView(
                 position: Int,
@@ -115,11 +116,13 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         spinner.onItemSelectedListener = this
-        spinner.adapter = adp
+        spinner.adapter = adptest
+        spinnerSize.onItemSelectedListener = this
+        spinnerSize.adapter = adptest2
 
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-            textView2.text = it
+            //textView2.text = it
 
         })
         return root

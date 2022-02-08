@@ -33,11 +33,30 @@ class Datasource {
             )
     }
 
-    fun loadSpinnerItem(): LinkedHashMap<String,String>{
-        val linkedHashMap = LinkedHashMap<String, String>()
-        linkedHashMap.put("B","Ben")
-        linkedHashMap.put("M","Men")
-        linkedHashMap.put("D","Den")
+    fun loadSpinnerItem(): LinkedHashMap<Int,String>{
+        val linkedHashMap = LinkedHashMap<Int, String>()
+        linkedHashMap.put(0,"select drink")
+        linkedHashMap.put(1,"a1 drink")
+        linkedHashMap.put(2,"a2 drink")
+        linkedHashMap.put(3,"a3 drink")
+        linkedHashMap.put(4,"a4 drink")
+        linkedHashMap.put(5,"a5 drink")
+        linkedHashMap.put(6,"a6 drink")
+        linkedHashMap.put(7,"a7 drink")
+        linkedHashMap.put(8,"a8 drink")
+        linkedHashMap.put(9,"a9 drink")
+        linkedHashMap.put(10,"a10 drink")
+        linkedHashMap.put(11,"a11 drink")
+        linkedHashMap.put(12,"a12 drink")
+        linkedHashMap.put(13,"a13 drink")
+        return linkedHashMap
+    }
+
+    fun loadSpinnerItemSize(): LinkedHashMap<Int,String>{
+        val linkedHashMap = LinkedHashMap<Int, String>()
+        linkedHashMap.put(0,"select size")
+        linkedHashMap.put(1,"M")
+        linkedHashMap.put(2,"L")
         return linkedHashMap
     }
 
