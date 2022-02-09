@@ -5,7 +5,9 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Parcel
+import android.text.InputFilter
+import android.text.Spanned
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +16,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.kotlindemo.databinding.FragmentGalleryBinding
-import com.example.kotlindemo.ui.home.HomeViewModel
-import com.example.kotlindemo.data.Datasource
-import com.example.kotlindemo.model.SpinnerItem
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.example.kotlindemo.adapter.DropdownAdapter
+import com.example.kotlindemo.data.Datasource
+import com.example.kotlindemo.databinding.FragmentGalleryBinding
+import com.example.kotlindemo.model.SpinnerItem
+import com.example.kotlindemo.ui.home.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -49,6 +50,12 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         //val textView2: TextView = binding.textView2
         val spinner: Spinner = binding.spinner
         val spinnerSize: Spinner = binding.spinner2
+        val editText: EditText = binding.editTextNumber
+
+        // Assigning filters
+        editText.filters = arrayOf<InputFilter>(MinMaxFilter(1, 20))
+
+
 
         val arrayList1 = ArrayList<String>()
         arrayList1.add("B");
@@ -147,6 +154,43 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    // Custom class to define min and max for the edit text
+    inner class MinMaxFilter() : InputFilter {
+        private var intMin: Int = 0
+        private var intMax: Int = 0
+
+        // Initialized
+        constructor(minValue: Int, maxValue: Int) : this() {
+            this.intMin = minValue
+            this.intMax = maxValue
+        }
+
+        override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dStart: Int, dEnd: Int): CharSequence? {
+            try {
+                val input = Integer.parseInt(dest.toString() + source.toString())
+                if (isInRange(intMin, intMax, input)) {
+
+
+                    return null
+                }else{
+                    val snack = Snackbar.make(requireView(),"最大20",Snackbar.LENGTH_LONG)
+                    snack.anchorView = this@GalleryFragment.binding.editTextNumber
+                    snack.show()
+
+                }
+            } catch (e: NumberFormatException) {
+                e.printStackTrace()
+            }
+            return ""
+        }
+
+        // Check if input c is in between min a and max b and
+        // returns corresponding boolean
+        private fun isInRange(a: Int, b: Int, c: Int): Boolean {
+            return if (b > a) c in a..b else c in b..a
+        }
     }
 
 
