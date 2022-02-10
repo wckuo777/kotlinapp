@@ -24,6 +24,9 @@ import com.example.kotlindemo.databinding.FragmentGalleryBinding
 import com.example.kotlindemo.model.SpinnerItem
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -35,6 +38,12 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private val listViewArray = arrayOf(
+        "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE",
+        "TEN", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen"
+    )
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +62,9 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         val spinner: Spinner = binding.spinner
         val spinnerSize: Spinner = binding.spinner2
         val editText: EditText = binding.editTextNumber
+        val list: ListView = binding.listView
+
+        list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, listViewArray)
 
         // Assigning filters
         editText.filters = arrayOf<InputFilter>(MinMaxFilter(1, 20))
@@ -148,6 +160,9 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
         }
 
+        // default focus exception spinner
+        binding.editTextNumber.clearFocus()
+
 
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
@@ -166,7 +181,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-        this.binding.editTextNumber.clearFocus()
+
 
         //this.binding.spinner.performClick()
 //        if(position == 0){
@@ -230,6 +245,15 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
             return if (b > a) c in a..b else c in b..a
         }
     }
+
+    open class Item(val name: String, val size: Int, val count: Int)
+
+//    private fun summary(purchase :Item): List<String> {
+//        val purchaseList = mutableListOf<Item>()
+//        purchaseList.add(purchase)
+//
+//
+//    }
 
 
 
