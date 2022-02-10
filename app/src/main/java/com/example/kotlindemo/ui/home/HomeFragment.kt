@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private var isLinearLayoutManager = true
     private lateinit var recyclerView: RecyclerView
-    val myDataset = Datasource().loadAffirmations()
+    private val myDataset = Datasource().loadAffirmations()
 
     // This property is only valid between onCreateView and
     // onDestroyView.

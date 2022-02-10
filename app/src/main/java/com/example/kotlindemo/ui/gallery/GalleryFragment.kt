@@ -4,6 +4,7 @@ import android.R
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
@@ -12,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -122,10 +124,30 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 //            }
         }
 
-        spinner.onItemSelectedListener = this
         spinner.adapter = adptest
-        spinnerSize.onItemSelectedListener = this
+        //initial select do not trigger
+        spinner.setSelection(0, false)
+        spinner.onItemSelectedListener = this
+//        spinner.isFocusable = true
+//        spinner.isFocusableInTouchMode = true
+//        spinner.requestFocus()
+
+
         spinnerSize.adapter = adptest2
+        spinner.setSelection(0, false)
+        spinnerSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                //binding.editTextNumber.isFocusable = true
+                //binding.editTextNumber.isFocusableInTouchMode =true
+                //binding.editTextNumber.requestFocus()
+            }
+
+        }
+
 
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
@@ -143,6 +165,22 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+        this.binding.editTextNumber.clearFocus()
+
+        //this.binding.spinner.performClick()
+//        if(position == 0){
+//            this.binding.spinner.isFocusable = true
+//            this.binding.spinner.isFocusableInTouchMode = true
+//            this.binding.spinner.requestFocus()
+//
+//        }else{
+//            this.binding.spinner2.isFocusable = true
+//            this.binding.spinner2.isFocusableInTouchMode = true
+//            this.binding.spinner2.requestFocus()
+//        }
+
+
 
         val selectItems: SpinnerItem = parent?.selectedItem as SpinnerItem
         Toast.makeText(
