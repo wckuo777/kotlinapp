@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +17,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.adapter.DropdownAdapter
+import com.example.kotlindemo.adapter.OrderListAdapter
 import com.example.kotlindemo.data.Datasource
 import com.example.kotlindemo.databinding.FragmentGalleryBinding
+import com.example.kotlindemo.model.DataGroup
 import com.example.kotlindemo.model.SpinnerItem
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -39,9 +40,10 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val listViewArray = arrayOf(
-        "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE",
-        "TEN", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen"
+    private val listViewArray = arrayListOf(
+        DataGroup("ONE"),
+        DataGroup("TWO"),  DataGroup("THREE"),  DataGroup("FOUR"),  DataGroup("FIVE"),  DataGroup("SIX"),  DataGroup("SEVEN"),  DataGroup("EIGHT"),  DataGroup("NINE"),
+            DataGroup("TEN"),  DataGroup("Eleven"),  DataGroup("Twelve"),  DataGroup("Thirteen"),  DataGroup("Fourteen"),  DataGroup("Fifteen"),  DataGroup("Sixteen")
     )
 
 
@@ -62,9 +64,14 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         val spinner: Spinner = binding.spinner
         val spinnerSize: Spinner = binding.spinner2
         val editText: EditText = binding.editTextNumber
-        val list: ListView = binding.listView
+        val listRecycle: RecyclerView = binding.listView
 
-        list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, listViewArray)
+        //list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_multiple_choice, listViewArray)
+        //list.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+        listRecycle.adapter = OrderListAdapter(requireContext() , listViewArray )
+        //layout is necessary or in xml
+        //listRecycle.layoutManager = LinearLayoutManager(context)
+        listRecycle.setHasFixedSize(true)
 
         // Assigning filters
         editText.filters = arrayOf<InputFilter>(MinMaxFilter(1, 20))
@@ -248,12 +255,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
     open class Item(val name: String, val size: Int, val count: Int)
 
-//    private fun summary(purchase :Item): List<String> {
-//        val purchaseList = mutableListOf<Item>()
-//        purchaseList.add(purchase)
-//
-//
-//    }
+
 
 
 

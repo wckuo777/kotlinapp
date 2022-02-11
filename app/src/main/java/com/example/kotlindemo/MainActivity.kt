@@ -16,10 +16,12 @@ import android.R.menu
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.adapter.ItemAdapter
 import com.example.kotlindemo.data.Datasource
 import com.example.kotlindemo.R
+import com.google.android.material.appbar.AppBarLayout
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,8 +51,15 @@ class MainActivity : AppCompatActivity() {
                 Log.d("tag", "onCreate: ")
                 binding.appBarMain.fab.hide()
                 supportActionBar?.hide()
-            } else {
+            } else if(destination.id == R.id.nav_gallery){
+                // stop toolbar to scroll
+                binding.appBarMain.toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
+                    scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_NO_SCROLL
+                }
+            }
+            else {
                 binding.appBarMain.fab.show()
+
             }
         }
         // Passing each menu ID as a set of Ids because each

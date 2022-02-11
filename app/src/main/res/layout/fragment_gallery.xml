@@ -111,12 +111,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:nestedScrollingEnabled="true"
-                />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="true" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
