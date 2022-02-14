@@ -1,23 +1,23 @@
 package com.example.kotlindemo.ui.gallery
 
 import android.R
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
-
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
-
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.adapter.DropdownAdapter
 import com.example.kotlindemo.adapter.OrderListAdapter
@@ -27,7 +27,6 @@ import com.example.kotlindemo.model.DataGroup
 import com.example.kotlindemo.model.SpinnerItem
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlin.collections.ArrayList
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -75,7 +74,17 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
         // Assigning filters
         editText.filters = arrayOf<InputFilter>(MinMaxFilter(1, 20))
+        //editText.inputType = InputType.TYPE_NULL
 
+        // hide keyboard after press enter
+        editText.onFocusChangeListener = OnFocusChangeListener { view, focused ->
+            val keyboard =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            if (focused) keyboard.showSoftInput(editText, 0) else keyboard.hideSoftInputFromWindow(
+                editText.windowToken,
+                0
+            )
+        }
 
 
         val arrayList1 = ArrayList<String>()

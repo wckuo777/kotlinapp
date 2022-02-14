@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -20,8 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607" />
+        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView"
+        app:layout_constraintVertical_bias="0.334" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -68,14 +67,14 @@
         android:ems="10"
         android:focusable="auto"
         android:focusableInTouchMode="true"
-        android:imeOptions="actionNext"
         android:hint="數量"
+        android:imeOptions="actionNext"
         android:inputType="number"
-        android:singleLine="true"
-        android:nextFocusUp="@+id/spinner2"
         android:nextFocusLeft="@+id/spinner2"
-        android:nextFocusDown="@+id/buttonConfirm"
         android:nextFocusRight="@+id/buttonConfirm"
+        android:nextFocusUp="@+id/spinner2"
+        android:nextFocusForward="@+id/buttonConfirm"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,38 +84,42 @@
         android:id="@+id/buttonConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="276dp"
         android:focusable="auto"
-        android:singleLine="true"
         android:focusableInTouchMode="true"
+        android:nextFocusLeft="@+id/editTextNumber"
+        android:nextFocusRight="@+id/listView"
+        android:nextFocusUp="@+id/editTextNumber"
+        android:nextFocusDown="@+id/listView"
+        android:singleLine="true"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="409dp"
         android:layout_height="196dp"
-        android:layout_marginTop="16dp"
-        android:fillViewport="true"
 
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/buttonConfirm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-        >
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
