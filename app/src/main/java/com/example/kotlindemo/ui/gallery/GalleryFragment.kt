@@ -64,6 +64,20 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         val spinnerSize: Spinner = binding.spinner2
         val editText: EditText = binding.editTextNumber
         val listRecycle: RecyclerView = binding.listView
+        val addBtn: Button = binding.buttonConfirm
+
+
+        addBtn.setOnClickListener {
+
+           val a = binding.spinner.selectedItem as SpinnerItem
+           val spinnerId: Any =  a.getId().toString()
+            val spinnerName: Any? =  a.getName()
+            Toast.makeText(
+                context,
+                "ID: $spinnerId,  Name : $spinnerName",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
         //list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_multiple_choice, listViewArray)
         //list.choiceMode = ListView.CHOICE_MODE_MULTIPLE
@@ -96,9 +110,9 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
         val drinkList: ArrayList<SpinnerItem> = ArrayList()
         val drinkSizeList: ArrayList<SpinnerItem> = ArrayList()
-        //Add countries
+        //Add drinkList
 
-        //Add countries
+        //Add drinkList
         for (item in spinmap){
             drinkList.add(SpinnerItem(item.key, item.value))
         }
@@ -150,6 +164,8 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 //                // disable the third item of spinner
 //                return position != 0
 //            }
+
+
         }
 
         spinner.adapter = adptest
