@@ -8,9 +8,11 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
 import com.example.kotlindemo.model.DataGroup
+import com.example.kotlindemo.ui.gallery.GalleryViewModel
 
 // using listView :baseAdapter is not good solution ; recycle is better
 class OrderListAdapter( private val context: Context, private val dataList: ArrayList<DataGroup>): RecyclerView.Adapter<OrderListAdapter.MyHolder>() {
+
     class MyHolder(private val itemView: View): RecyclerView.ViewHolder(itemView) {
          val listText: TextView = itemView.findViewById(R.id.txtName)
          val btn: Button =itemView.findViewById(R.id.delBtn)
@@ -33,6 +35,9 @@ class OrderListAdapter( private val context: Context, private val dataList: Arra
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val dataItem = dataList[position]
         holder.listText.text = dataItem.name
+        holder.btn.setOnClickListener {
+
+        }
     }
 
     override fun getItemCount(): Int {

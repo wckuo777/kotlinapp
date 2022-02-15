@@ -39,11 +39,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val listViewArray = arrayListOf(
-        DataGroup("ONE"),
-        DataGroup("TWO"),  DataGroup("THREE"),  DataGroup("FOUR"),  DataGroup("FIVE"),  DataGroup("SIX"),  DataGroup("SEVEN"),  DataGroup("EIGHT"),  DataGroup("NINE"),
-            DataGroup("TEN"),  DataGroup("Eleven"),  DataGroup("Twelve"),  DataGroup("Thirteen"),  DataGroup("Fourteen"),  DataGroup("Fifteen"),  DataGroup("Sixteen")
-    )
+    private val listViewArray = arrayListOf<DataGroup>()
 
 
     override fun onCreateView(
@@ -70,6 +66,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         addBtn.setOnClickListener {
 
            val a = binding.spinner.selectedItem as SpinnerItem
+            val b = binding.spinner2.selectedItem as SpinnerItem
            val spinnerId: Any =  a.getId().toString()
             val spinnerName: Any? =  a.getName()
             Toast.makeText(
@@ -77,11 +74,20 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
                 "ID: $spinnerId,  Name : $spinnerName",
                 Toast.LENGTH_SHORT
             ).show()
+
+            listViewArray.add(DataGroup(spinnerName as String, b.getName().toString(),30 ))
+            listRecycle.adapter = OrderListAdapter(requireContext() ,
+                listViewArray
+            )
+
+
         }
 
         //list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_multiple_choice, listViewArray)
         //list.choiceMode = ListView.CHOICE_MODE_MULTIPLE
-        listRecycle.adapter = OrderListAdapter(requireContext() , listViewArray )
+        listRecycle.adapter = OrderListAdapter(requireContext() ,
+            listViewArray
+        )
         //layout is necessary or in xml
         //listRecycle.layoutManager = LinearLayoutManager(context)
         listRecycle.setHasFixedSize(true)
