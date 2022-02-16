@@ -39,7 +39,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val listViewArray = arrayListOf<DataGroup>()
+    private var listViewArray = mutableListOf<DataGroup>()
 
 
     override fun onCreateView(
@@ -76,8 +76,9 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
             ).show()
 
             listViewArray.add(DataGroup(spinnerName as String, b.getName().toString(),30 ))
+            listViewArray = listViewArray.asReversed().toMutableList()
             listRecycle.adapter = OrderListAdapter(requireContext() ,
-                listViewArray
+                listViewArray as ArrayList<DataGroup>
             )
 
 
@@ -86,7 +87,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         //list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_multiple_choice, listViewArray)
         //list.choiceMode = ListView.CHOICE_MODE_MULTIPLE
         listRecycle.adapter = OrderListAdapter(requireContext() ,
-            listViewArray
+            listViewArray as ArrayList<DataGroup>
         )
         //layout is necessary or in xml
         //listRecycle.layoutManager = LinearLayoutManager(context)

@@ -11,7 +11,7 @@ import com.example.kotlindemo.model.DataGroup
 import com.example.kotlindemo.ui.gallery.GalleryViewModel
 
 // using listView :baseAdapter is not good solution ; recycle is better
-class OrderListAdapter( private val context: Context, private val dataList: ArrayList<DataGroup>): RecyclerView.Adapter<OrderListAdapter.MyHolder>() {
+class OrderListAdapter(private val context: Context, private val dataList: ArrayList<DataGroup>): RecyclerView.Adapter<OrderListAdapter.MyHolder>() {
 
     class MyHolder(private val itemView: View): RecyclerView.ViewHolder(itemView) {
          val listText: TextView = itemView.findViewById(R.id.txtName)
@@ -36,12 +36,21 @@ class OrderListAdapter( private val context: Context, private val dataList: Arra
         val dataItem = dataList[position]
         holder.listText.text = dataItem.name
         holder.btn.setOnClickListener {
-
+            this.removeItem(position)
+            //Toast.makeText(context, dataList[position].toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun getItemCount(): Int {
         return dataList.size
+    }
+
+    private fun removeItem(position: Int){
+        if(dataList.size > 0){
+            dataList.removeAt(position)
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position,dataList.size);
+        }
     }
 
 
