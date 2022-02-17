@@ -16,6 +16,8 @@ class OrderListAdapter(private val context: Context, private val dataList: Array
     class MyHolder(private val itemView: View): RecyclerView.ViewHolder(itemView) {
          val listText: TextView = itemView.findViewById(R.id.txtName)
          val btn: Button =itemView.findViewById(R.id.delBtn)
+        val priceText: TextView = itemView.findViewById((R.id.textPrice))
+        val sizeText: TextView = itemView.findViewById(R.id.textSize)
     }
 
 
@@ -35,6 +37,8 @@ class OrderListAdapter(private val context: Context, private val dataList: Array
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val dataItem = dataList[position]
         holder.listText.text = dataItem.name
+        holder.priceText.text = dataItem.price.toString()
+        holder.sizeText.text = dataItem.size
         holder.btn.setOnClickListener {
             this.removeItem(position)
             //Toast.makeText(context, dataList[position].toString(), Toast.LENGTH_SHORT).show()

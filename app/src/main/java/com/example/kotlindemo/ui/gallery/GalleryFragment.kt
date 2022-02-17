@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputFilter
 import android.text.Spanned
 import android.view.LayoutInflater
@@ -67,6 +68,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
            val a = binding.spinner.selectedItem as SpinnerItem
             val b = binding.spinner2.selectedItem as SpinnerItem
+            val c = binding.editTextNumber.text.toString().toInt()
            val spinnerId: Any =  a.getId().toString()
             val spinnerName: Any? =  a.getName()
             Toast.makeText(
@@ -75,7 +77,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
                 Toast.LENGTH_SHORT
             ).show()
 
-            listViewArray.add(DataGroup(spinnerName as String, b.getName().toString(),30 ))
+            listViewArray.add(DataGroup(spinnerName as String, b.getName().toString(),30*c ))
             listViewArray = listViewArray.asReversed().toMutableList()
             listRecycle.adapter = OrderListAdapter(requireContext() ,
                 listViewArray as ArrayList<DataGroup>
@@ -293,6 +295,8 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
 
 }
+
+
 
 
 
