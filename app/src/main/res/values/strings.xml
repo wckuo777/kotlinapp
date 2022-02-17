@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KotlinDemo</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -30,4 +31,6 @@
     <string name="item_name">品名</string>
     <string name="item_size">容量</string>
     <string name="item_count">數量</string>
+    <string name="order_details">Quantity: %1$s \n Flavor: %2$s \nPickup date: %3$s \n
+        Total: %4$s \n\n Thank you!</string>
 </resources>

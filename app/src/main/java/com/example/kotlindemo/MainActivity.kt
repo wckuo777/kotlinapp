@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //get navGraph childFragment if activate
+//        val navHostFragment: Fragment? =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+//        navHostFragment?.childFragmentManager?.fragments?.get(0)
+
 
 
         setSupportActionBar(binding.appBarMain.toolbar)
