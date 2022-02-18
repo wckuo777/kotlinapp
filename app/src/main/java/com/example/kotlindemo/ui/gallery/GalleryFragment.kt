@@ -2,7 +2,6 @@ package com.example.kotlindemo.ui.gallery
 
 import android.R
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
@@ -28,7 +27,6 @@ import com.example.kotlindemo.model.DataGroup
 import com.example.kotlindemo.model.SpinnerItem
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.example.kotlindemo.R as LocalR
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -82,6 +80,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
             listRecycle.adapter = OrderListAdapter(requireContext() ,
                 listViewArray as ArrayList<DataGroup>
             )
+            galleryViewModel.setOrderData(listViewArray as ArrayList<DataGroup>)
 
 
         }
@@ -288,36 +287,6 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     open class Item(val name: String, val size: Int, val count: Int)
-
-
-    fun sendOrder() {
-        // Construct the order summary text with information from the view model
-        //val numberOfCupcakes = sharedViewModel.quantity.value ?: 0
-//        Snackbar.make(requireView(), "Replace with your own action!!!", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-        val orderSummary = getString(
-            LocalR.string.order_details,
-            "q","w","e","1"
-
-        )
-
-        // Create an ACTION_SEND implicit intent with order details in the intent extras
-        val intent = Intent(Intent.ACTION_SEND)
-            .setType("text/plain")
-            .putExtra(Intent.EXTRA_SUBJECT, "Test2")
-            .putExtra(Intent.EXTRA_TEXT, orderSummary)
-
-        // Check if there's an app that can handle this intent before launching it
-        if (activity?.packageManager?.resolveActivity(intent, 0) != null) {
-            // Start a new activity with the given intent (this may open the share dialog on a
-            // device if multiple apps can handle this intent)
-            startActivity(intent)
-        }
-    }
-
-
-
-
 
 
 }
