@@ -124,8 +124,8 @@ class HomeFragment : Fragment() {
         // else menu.icon = ContextCompat.getDrawable(this, R.drawable.ic_linear_layout)
         menuItem.icon =
             if (isLinearLayoutManager)
-                ContextCompat.getDrawable(this.requireContext(), R.drawable.grid_layout)
-            else ContextCompat.getDrawable(this.requireContext(), R.drawable.linear_layout)
+                ContextCompat.getDrawable(this.requireContext(), R.drawable.linear_layout)
+            else ContextCompat.getDrawable(this.requireContext(), R.drawable.grid_layout)
     }
 
 
