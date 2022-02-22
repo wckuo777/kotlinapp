@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 binding.appBarMain.fab.setOnClickListener { view ->
 
                     val testD = sharedViewModel.orderData.value
-                    testD?.get(0)?.let { Log.d("abctest", it.name) }
+                    Log.d("test001","aaa")
                     val textC = sharedViewModel.text.value
                     val orderSummary = getString(
                         R.string.order_details,

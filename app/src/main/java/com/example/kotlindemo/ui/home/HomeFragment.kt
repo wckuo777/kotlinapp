@@ -10,13 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.adapter.ItemAdapter
 import com.example.kotlindemo.data.Datasource
 import com.example.kotlindemo.R
+import com.example.kotlindemo.data.SettingsDataStore
+import com.example.kotlindemo.data.dataStore
 import com.example.kotlindemo.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -30,6 +35,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var layoutDataStore: SettingsDataStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +67,15 @@ class HomeFragment : Fragment() {
 
         //recyclerView.adapter = ItemAdapter(view.context,myDataset, homeViewModel)
         recyclerView.setHasFixedSize(true)
+        layoutDataStore = SettingsDataStore(requireContext().dataStore)
+
+        layoutDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner, {  })
+        layoutDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner, { value ->
+            isLinearLayoutManager = value
+            chooseLayout()
+            // Redraw the menu
+            activity?.invalidateOptionsMenu()
+        })
         chooseLayout()
     }
 
@@ -119,6 +134,12 @@ class HomeFragment : Fragment() {
             R.id.action_switch_layout -> {
                 // Sets isLinearLayoutManager (a Boolean) to the opposite value
                 isLinearLayoutManager = !isLinearLayoutManager
+
+                // Launch a coroutine and write the layout setting in the preference Datastore
+                lifecycleScope.launch {
+                    layoutDataStore.saveLayoutToPreferencesStore(isLinearLayoutManager, requireContext())
+                }
+
                 // Sets layout and icon
                 chooseLayout()
                 setIcon(item)
