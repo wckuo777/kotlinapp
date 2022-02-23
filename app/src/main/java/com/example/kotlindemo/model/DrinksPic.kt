@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 
 data class DrinksPic (@StringRes val stringResourceId: Int, @DrawableRes val imageResourceId: Int)
 //class DataModel internal constructor(var name: String?, var checked: Boolean)
-data class DataGroup(val name: String, val size: String, val price: Int)
+data class DataGroup(val name: String, val size: String, val price: Int , val count: Int)
 // data class DataGroup(val name: String)
 class SpinnerItem(var id: Int, var name: String) {
 

@@ -1,41 +1,37 @@
 package com.example.kotlindemo
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.view.updateLayoutParams
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
-import android.R.menu
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
-import android.util.Log
-import androidx.activity.viewModels
-import androidx.appcompat.view.menu.MenuBuilder
-import androidx.core.view.updateLayoutParams
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlindemo.adapter.ItemAdapter
-import com.example.kotlindemo.data.Datasource
-import com.example.kotlindemo.R
 import com.example.kotlindemo.ui.gallery.GalleryFragment
 import com.example.kotlindemo.ui.gallery.GalleryViewModel
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private val sharedViewModel: GalleryViewModel by viewModels()
+    //private lateinit var sharedViewModel: GalleryViewModel
+    private  val sharedViewModel: GalleryViewModel by viewModels()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +40,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //get navGraph childFragment if activate
-//        val navHostFragment: Fragment? =
-//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-//        navHostFragment?.childFragmentManager?.fragments?.get(0)
+
 
 
 
@@ -62,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.nav_friendWebSites) {
                 Log.d("tag", "onCreate: ")
@@ -71,6 +66,8 @@ class MainActivity : AppCompatActivity() {
                 binding.appBarMain.fab.hide()
             }
             else if(destination.id == R.id.nav_gallery){
+                //val currentFragment = supportFragmentManager.primaryNavigationFragment
+
                 binding.appBarMain.fab.show()
                 // stop toolbar to scroll
                 binding.appBarMain.toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
@@ -78,8 +75,22 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 binding.appBarMain.fab.setOnClickListener { view ->
+                    //Log.d("test0012",GalleryFragment.obj.toString())
+
+                    //NG
+                    //val hostFragment1 = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)?.parentFragment?.childFragmentManager?.findFragmentById(R.id.nav_gallery) as GalleryFragment
+//                    if (hostFragment1 != null) {
+//                        sharedViewModel.orderData.observe(controller.getViewModelStoreOwner(R.id.nav_gallery), Observer { item ->
+//                            Log.d("test0012", item.toString())
+//                        })
+//                    }
+//                    currentFragment.observeInput()
+//                    sharedViewModel.orderData.observe(currentFragment!!.viewLifecycleOwner, Observer { item ->
+//                           Log.d("test0012", item.toString())
+//                    })
 
                     val testD = sharedViewModel.orderData.value
+                    val testD1 = sharedViewModel.summary.value
                     Log.d("test001","aaa")
                     val textC = sharedViewModel.text.value
                     val orderSummary = getString(
@@ -100,10 +111,10 @@ class MainActivity : AppCompatActivity() {
                         // device if multiple apps can handle this intent)
                         startActivity(intent)
                     //}
-                    //bad: just reference
+                    //NG: just reference
 //                  val hostFragment1: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
 //                    val galleryFragment: GalleryFragment = hostFragment1?.childFragmentManager?.findFragmentById(R.id.nav_gallery) as GalleryFragment
-//                    galleryFragment.sendOrderTest()
+//                    galleryFragment.observeInput()
 
                 }
             }
@@ -137,5 +148,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun observeInput(viewmodel: GalleryViewModel) {
+        viewmodel.orderData.observe(this, Observer {
+            it?.let {
+                Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
+            }
+
+
+        })
     }
 }

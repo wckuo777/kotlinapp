@@ -50,6 +50,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         galleryViewModel =
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
+
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         homeViewModel.cleanComment()
         val root: View = binding.root
@@ -62,32 +63,45 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         val listRecycle: RecyclerView = binding.listView
         val addBtn: Button = binding.buttonConfirm
 
+
         addBtn.setOnClickListener {
 
-           val a = binding.spinner.selectedItem as SpinnerItem
+            val a = binding.spinner.selectedItem as SpinnerItem
             val b = binding.spinner2.selectedItem as SpinnerItem
             val c = binding.editTextNumber.text.toString().toInt()
-           val spinnerId: Any =  a.getId().toString()
-            val spinnerName: Any? =  a.getName()
+            val spinnerId: Any = a.getId().toString()
+            val spinnerName: Any? = a.getName()
             Toast.makeText(
                 context,
                 "ID: $spinnerId,  Name : $spinnerName",
                 Toast.LENGTH_SHORT
             ).show()
 
-            listViewArray.add(DataGroup(spinnerName as String, b.getName().toString(),30*c ))
+
+
+            listViewArray.add(
+                DataGroup(
+                    spinnerName as String,
+                    b.getName().toString(),
+                    if (b.getName() == "M") 30 * c else 60 * c,
+                    c
+                )
+            )
             listViewArray = listViewArray.asReversed().toMutableList()
-            listRecycle.adapter = OrderListAdapter(requireContext() ,
+            listRecycle.adapter = OrderListAdapter(
+                requireContext(),
                 listViewArray as ArrayList<DataGroup>
             )
             galleryViewModel.setOrderData(listViewArray as ArrayList<DataGroup>)
+            observeInput()
 
 
         }
 
         //list.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_multiple_choice, listViewArray)
         //list.choiceMode = ListView.CHOICE_MODE_MULTIPLE
-        listRecycle.adapter = OrderListAdapter(requireContext() ,
+        listRecycle.adapter = OrderListAdapter(
+            requireContext(),
             listViewArray as ArrayList<DataGroup>
         )
         //layout is necessary or in xml
@@ -121,32 +135,36 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         //Add drinkList
 
         //Add drinkList
-        for (item in spinmap){
+        for (item in spinmap) {
             drinkList.add(SpinnerItem(item.key, item.value))
         }
-        for (itemSize in spinmapsize){
+        for (itemSize in spinmapsize) {
             drinkSizeList.add(SpinnerItem(itemSize.key, itemSize.value))
         }
 
-        val adptest: ArrayAdapter<SpinnerItem> = DropdownAdapter(requireContext(),
+        val adptest: ArrayAdapter<SpinnerItem> = DropdownAdapter(
+            requireContext(),
             R.layout.simple_spinner_dropdown_item,
-            drinkList,spinner.selectedItemPosition)
+            drinkList, spinner.selectedItemPosition
+        )
 
-        val adptest2: ArrayAdapter<SpinnerItem> = DropdownAdapter(requireContext(),
+        val adptest2: ArrayAdapter<SpinnerItem> = DropdownAdapter(
+            requireContext(),
             R.layout.simple_spinner_dropdown_item,
-            drinkSizeList,spinnerSize.selectedItemPosition)
+            drinkSizeList, spinnerSize.selectedItemPosition
+        )
 
-        val adp: ArrayAdapter<SpinnerItem> = object: ArrayAdapter<SpinnerItem>(
+        val adp: ArrayAdapter<SpinnerItem> = object : ArrayAdapter<SpinnerItem>(
             requireContext(),
             R.layout.simple_spinner_dropdown_item,
             drinkList
-        ){
+        ) {
             override fun getDropDownView(
                 position: Int,
                 convertView: View?,
                 parent: ViewGroup
             ): View {
-                val view:TextView = super.getDropDownView(
+                val view: TextView = super.getDropDownView(
                     position,
                     convertView,
                     parent
@@ -155,13 +173,13 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
                 // set item text bold and sans serif font
                 view.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD)
 
-                if (position == 0){
+                if (position == 0) {
                     // set the spinner disabled item text color
                     view.setTextColor(Color.LTGRAY)
                 }
 
                 // set selected item style
-                if (position == spinner.selectedItemPosition){
+                if (position == spinner.selectedItemPosition) {
                     view.background = ColorDrawable(Color.parseColor("#07B2F9"))
                 }
 
@@ -187,12 +205,17 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
         spinnerSize.adapter = adptest2
         spinner.setSelection(0, false)
-        spinnerSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinnerSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 //binding.editTextNumber.isFocusable = true
                 //binding.editTextNumber.isFocusableInTouchMode =true
                 //binding.editTextNumber.requestFocus()
@@ -213,14 +236,12 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
 
 
         //this.binding.spinner.performClick()
@@ -234,7 +255,6 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 //            this.binding.spinner2.isFocusableInTouchMode = true
 //            this.binding.spinner2.requestFocus()
 //        }
-
 
 
         val selectItems: SpinnerItem = parent?.selectedItem as SpinnerItem
@@ -260,15 +280,22 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
             this.intMax = maxValue
         }
 
-        override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dStart: Int, dEnd: Int): CharSequence? {
+        override fun filter(
+            source: CharSequence,
+            start: Int,
+            end: Int,
+            dest: Spanned,
+            dStart: Int,
+            dEnd: Int
+        ): CharSequence? {
             try {
                 val input = Integer.parseInt(dest.toString() + source.toString())
                 if (isInRange(intMin, intMax, input)) {
 
 
                     return null
-                }else{
-                    val snack = Snackbar.make(requireView(),"最大20",Snackbar.LENGTH_LONG)
+                } else {
+                    val snack = Snackbar.make(requireView(), "最大20", Snackbar.LENGTH_LONG)
                     snack.anchorView = this@GalleryFragment.binding.editTextNumber
                     snack.show()
 
@@ -287,6 +314,20 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     open class Item(val name: String, val size: Int, val count: Int)
+
+    fun observeInput() {
+        galleryViewModel.orderData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                //Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
+
+        galleryViewModel.summary.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
 
 
 }
