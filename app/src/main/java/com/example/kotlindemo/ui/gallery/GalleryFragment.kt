@@ -1,7 +1,9 @@
 package com.example.kotlindemo.ui.gallery
 
 import android.R
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
@@ -93,7 +95,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
                 listViewArray as ArrayList<DataGroup>
             )
             galleryViewModel.setOrderData(listViewArray as ArrayList<DataGroup>)
-            observeInput()
+//            observeInput()
 
 
         }
@@ -316,17 +318,36 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
     open class Item(val name: String, val size: Int, val count: Int)
 
     fun observeInput() {
-        galleryViewModel.orderData.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                //Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-            }
-        })
+//        galleryViewModel.orderData.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                //Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+//            }
+//        })
 
         galleryViewModel.summary.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+//                val orderSummary = getString(
+//                    com.example.kotlindemo.R.string.order_details,
+//                    "q","w","e","1"
+//
+//                )
+
+                // Create an ACTION_SEND implicit intent with order details in the intent extras
+                val intent = Intent(Intent.ACTION_SEND)
+                    .setType("text/plain")
+                    .putExtra(Intent.EXTRA_SUBJECT, "TestMail")
+                    .putExtra(Intent.EXTRA_TEXT, it)
+
+                // Check if there's an app that can handle this intent before launching it
+                //if (packageManager?.resolveActivity(intent, 0) != null) {
+                // Start a new activity with the given intent (this may open the share dialog on a
+                // device if multiple apps can handle this intent)
+                startActivity(intent)
             }
         })
+
+
     }
 
 

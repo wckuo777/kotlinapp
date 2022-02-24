@@ -11,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.updateLayoutParams
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.*
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         //get navGraph childFragment if activate
 
@@ -84,32 +86,17 @@ class MainActivity : AppCompatActivity() {
 //                            Log.d("test0012", item.toString())
 //                        })
 //                    }
-//                    currentFragment.observeInput()
-//                    sharedViewModel.orderData.observe(currentFragment!!.viewLifecycleOwner, Observer { item ->
-//                           Log.d("test0012", item.toString())
-//                    })
+
+                    val navHostFragment: Fragment? =
+                        supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
+                    val b = navHostFragment?.childFragmentManager?.fragments?.get(0) as GalleryFragment
+                    b.observeInput()
 
                     val testD = sharedViewModel.orderData.value
                     val testD1 = sharedViewModel.summary.value
                     Log.d("test001","aaa")
                     val textC = sharedViewModel.text.value
-                    val orderSummary = getString(
-                        R.string.order_details,
-                        "q","w","e","1"
 
-                    )
-
-                    // Create an ACTION_SEND implicit intent with order details in the intent extras
-                    val intent = Intent(Intent.ACTION_SEND)
-                        .setType("text/plain")
-                        .putExtra(Intent.EXTRA_SUBJECT, "TestMail")
-                        .putExtra(Intent.EXTRA_TEXT, orderSummary)
-
-                    // Check if there's an app that can handle this intent before launching it
-                    //if (packageManager?.resolveActivity(intent, 0) != null) {
-                        // Start a new activity with the given intent (this may open the share dialog on a
-                        // device if multiple apps can handle this intent)
-                        startActivity(intent)
                     //}
                     //NG: just reference
 //                  val hostFragment1: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
