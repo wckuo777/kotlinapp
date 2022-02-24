@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    //private lateinit var sharedViewModel: GalleryViewModel
-    private  val sharedViewModel: GalleryViewModel by viewModels()
 
+    //private lateinit var sharedViewModel: GalleryViewModel
+    private val sharedViewModel: GalleryViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +44,9 @@ class MainActivity : AppCompatActivity() {
         //get navGraph childFragment if activate
 
 
-
-
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener { view ->
-
 
 
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -64,10 +61,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d("tag", "onCreate: ")
                 binding.appBarMain.fab.hide()
                 supportActionBar?.hide()
-            } else if(destination.id == R.id.nav_home){
+            } else if (destination.id == R.id.nav_home) {
                 binding.appBarMain.fab.hide()
-            }
-            else if(destination.id == R.id.nav_gallery){
+            } else if (destination.id == R.id.nav_gallery) {
                 //val currentFragment = supportFragmentManager.primaryNavigationFragment
 
                 binding.appBarMain.fab.show()
@@ -89,12 +85,26 @@ class MainActivity : AppCompatActivity() {
 
                     val navHostFragment: Fragment? =
                         supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
-                    val b = navHostFragment?.childFragmentManager?.fragments?.get(0) as GalleryFragment
-                    b.observeInput()
+                    val b =
+                        navHostFragment?.childFragmentManager?.fragments?.get(0) as GalleryFragment
+                    val orderString: String = b.observeInput()
+                    if (orderString.isBlank()) {} else {
+                        // Create an ACTION_SEND implicit intent with order details in the intent extras
+                        val intent = Intent(Intent.ACTION_SEND)
+                            .setType("text/plain")
+                            .putExtra(Intent.EXTRA_SUBJECT, "TestMail")
+                            .putExtra(Intent.EXTRA_TEXT, orderString)
+
+                        // Check if there's an app that can handle this intent before launching it
+                        //if (packageManager?.resolveActivity(intent, 0) != null) {
+                        // Start a new activity with the given intent (this may open the share dialog on a
+                        // device if multiple apps can handle this intent)
+                        startActivity(intent)
+                    }
 
                     val testD = sharedViewModel.orderData.value
                     val testD1 = sharedViewModel.summary.value
-                    Log.d("test001","aaa")
+                    Log.d("test001", "aaa")
                     val textC = sharedViewModel.text.value
 
                     //}
@@ -104,8 +114,8 @@ class MainActivity : AppCompatActivity() {
 //                    galleryFragment.observeInput()
 
                 }
-            }
-            else {
+            } else {
+                binding.appBarMain.fab.setOnClickListener { }
                 binding.appBarMain.fab.show()
 
             }

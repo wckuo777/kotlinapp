@@ -70,32 +70,41 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
             val a = binding.spinner.selectedItem as SpinnerItem
             val b = binding.spinner2.selectedItem as SpinnerItem
-            val c = binding.editTextNumber.text.toString().toInt()
+            val c = if(binding.editTextNumber.text.toString().isBlank()) 0 else binding.editTextNumber.text.toString().toInt()
             val spinnerId: Any = a.getId().toString()
             val spinnerName: Any? = a.getName()
-            Toast.makeText(
-                context,
-                "ID: $spinnerId,  Name : $spinnerName",
-                Toast.LENGTH_SHORT
-            ).show()
 
+            if(a.getId() == 0 || b.getId() == 0 || c == 0)
 
-
-            listViewArray.add(
-                DataGroup(
-                    spinnerName as String,
-                    b.getName().toString(),
-                    if (b.getName() == "M") 30 * c else 60 * c,
-                    c
+                Toast.makeText(
+                    context,
+                    "No order in list ~",
+                    Toast.LENGTH_SHORT
+                ).show()
+            else {
+                Toast.makeText(
+                    context,
+                    "ID: $spinnerId,  Name : $spinnerName",
+                    Toast.LENGTH_SHORT
+                ).show()
+                listViewArray.add(
+                    DataGroup(
+                        spinnerName as String,
+                        b.getName().toString(),
+                        if (b.getName() == "M") 30 * c else 60 * c,
+                        c
+                    )
                 )
-            )
-            listViewArray = listViewArray.asReversed().toMutableList()
-            listRecycle.adapter = OrderListAdapter(
-                requireContext(),
-                listViewArray as ArrayList<DataGroup>
-            )
-            galleryViewModel.setOrderData(listViewArray as ArrayList<DataGroup>)
-//            observeInput()
+                listViewArray = listViewArray.asReversed().toMutableList()
+                listRecycle.adapter = OrderListAdapter(
+                    requireContext(),
+                    listViewArray as ArrayList<DataGroup>
+                )
+                galleryViewModel.setOrderData(listViewArray as ArrayList<DataGroup>)
+            }
+
+
+
 
 
         }
@@ -317,12 +326,13 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
     open class Item(val name: String, val size: Int, val count: Int)
 
-    fun observeInput() {
+    fun observeInput(): String {
 //        galleryViewModel.orderData.observe(viewLifecycleOwner, Observer {
 //            it?.let {
 //                //Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
 //            }
 //        })
+        var stringPass: String =""
 
         galleryViewModel.summary.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -332,20 +342,23 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 //                    "q","w","e","1"
 //
 //                )
+                stringPass = it
 
-                // Create an ACTION_SEND implicit intent with order details in the intent extras
-                val intent = Intent(Intent.ACTION_SEND)
-                    .setType("text/plain")
-                    .putExtra(Intent.EXTRA_SUBJECT, "TestMail")
-                    .putExtra(Intent.EXTRA_TEXT, it)
-
-                // Check if there's an app that can handle this intent before launching it
-                //if (packageManager?.resolveActivity(intent, 0) != null) {
-                // Start a new activity with the given intent (this may open the share dialog on a
-                // device if multiple apps can handle this intent)
-                startActivity(intent)
+//                // Create an ACTION_SEND implicit intent with order details in the intent extras
+//                val intent = Intent(Intent.ACTION_SEND)
+//                    .setType("text/plain")
+//                    .putExtra(Intent.EXTRA_SUBJECT, "TestMail")
+//                    .putExtra(Intent.EXTRA_TEXT, it)
+//
+//                // Check if there's an app that can handle this intent before launching it
+//                //if (packageManager?.resolveActivity(intent, 0) != null) {
+//                // Start a new activity with the given intent (this may open the share dialog on a
+//                // device if multiple apps can handle this intent)
+//                startActivity(intent)
             }
         })
+
+        return stringPass
 
 
     }
