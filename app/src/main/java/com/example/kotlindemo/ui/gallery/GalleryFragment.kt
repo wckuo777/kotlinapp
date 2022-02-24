@@ -29,6 +29,7 @@ import com.example.kotlindemo.model.DataGroup
 import com.example.kotlindemo.model.SpinnerItem
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
+import java.nio.file.Files.delete
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -99,7 +100,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
                 listRecycle.adapter = OrderListAdapter(
                     requireContext(),
                     listViewArray as ArrayList<DataGroup>
-                )
+                ) { item -> deleteOrder(listViewArray as ArrayList<DataGroup>) }
                 galleryViewModel.setOrderData(listViewArray as ArrayList<DataGroup>)
             }
 
@@ -114,7 +115,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         listRecycle.adapter = OrderListAdapter(
             requireContext(),
             listViewArray as ArrayList<DataGroup>
-        )
+        ){ item -> deleteOrder(listViewArray as ArrayList<DataGroup>) }
         //layout is necessary or in xml
         //listRecycle.layoutManager = LinearLayoutManager(context)
         listRecycle.setHasFixedSize(true)
@@ -361,6 +362,10 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         return stringPass
 
 
+    }
+
+    private fun deleteOrder(data: ArrayList<DataGroup>) {
+        galleryViewModel.deleteOrder(listViewArray as ArrayList<DataGroup> )
     }
 
 

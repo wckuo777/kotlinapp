@@ -40,34 +40,46 @@ class GalleryViewModel : ViewModel() {
 
     fun setOrderData(rData: ArrayList<DataGroup>) {
 
-        _orderData.value = rData
+        if(rData.size > 0) {
+            _orderData.value = rData
 
-        val groupData = rData.groupBy( keySelector = {it.name + " "+ it.size}, valueTransform = {it.price})
-        val summaryData: Map<String, Int> = groupData.mapValues { (name, works) -> works.sumOf{ it } }
-        var first = true
-        val builder = StringBuilder()
+            val groupData = rData.groupBy(keySelector = { it.name + " " + it.size },
+                valueTransform = { it.price })
+            val summaryData: Map<String, Int> =
+                groupData.mapValues { (name, works) -> works.sumOf { it } }
+            var first = true
+            val builder = StringBuilder()
 
-        for (entry in summaryData) {
-            if (first) {
-                first = false
-            } else {
-                builder.append("\n") // Or whatever break you want
+            for (entry in summaryData) {
+                if (first) {
+                    first = false
+                } else {
+                    builder.append("\n") // Or whatever break you want
+                }
+                builder.append(entry.key)
+                    .append(": ")
+                    .append(entry.value)
             }
-            builder.append(entry.key)
-                .append(": ")
-                .append(entry.value)
+            _summary.value = builder.toString()
+
+
+            Log.d("sum", builder.toString())
+        } else{
+            _summary.value = ""
         }
-        _summary.value = builder.toString()
 
-
-        Log.d("sum", builder.toString())
-
-        Log.d("abctest", _orderData.value!![0].name)
+        //Log.d("abctest", _orderData.value!![0].name)
     }
 
     fun sendOrderTest(view: View){
 
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                .setAction("Action", null).show()
+    }
+
+    fun deleteOrder(rData: ArrayList<DataGroup> ){
+        Log.d("test", "delete")
+        //rData.remove(delData)
+        setOrderData(rData)
     }
 }
