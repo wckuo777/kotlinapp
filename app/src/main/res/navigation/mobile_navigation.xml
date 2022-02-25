@@ -25,7 +25,14 @@
         android:id="@+id/nav_slideshow"
         android:name="com.example.kotlindemo.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_slideshow" >
+        <action
+            android:id="@+id/action_nav_slideshow_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
+        <action
+            android:id="@+id/action_nav_slideshow_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeDetailFragment"
@@ -41,6 +48,33 @@
         android:name="com.example.kotlindemo.ui.friendwebsites.FriendWebSitesFragment"
         android:label="WebSite"
         tools:layout="@layout/friend_web_sites_fragment" />
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="com.example.kotlindemo.ui.slideshow.ItemDetailFragment"
+        android:label="fragment_item_detail"
+        tools:layout="@layout/fragment_item_detail" >
+        <argument
+            android:name="item_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_itemDetailFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.kotlindemo.ui.slideshow.AddItemFragment"
+        android:label="AddItemFragment" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="item_id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_addItemFragment_to_nav_slideshow"
+            app:destination="@id/nav_slideshow" />
+    </fragment>
 
 
 </navigation>
