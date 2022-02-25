@@ -63,7 +63,10 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.hide()
             } else if (destination.id == R.id.nav_home) {
                 binding.appBarMain.fab.hide()
-            } else if (destination.id == R.id.nav_gallery) {
+            } else if (destination.id == R.id.nav_slideshow) {
+                binding.appBarMain.fab.hide()
+            }
+            else if (destination.id == R.id.nav_gallery) {
                 //val currentFragment = supportFragmentManager.primaryNavigationFragment
 
                 binding.appBarMain.fab.show()
@@ -131,6 +134,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    //top right menu
     @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

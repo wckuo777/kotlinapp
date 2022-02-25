@@ -33,4 +33,8 @@
     <string name="item_count">數量</string>
     <string name="order_details">Quantity: %1$s \n Flavor: %2$s \nPickup date: %3$s \n
         Total: %4$s \n\n Thank you!</string>
+    <string name="item">Item</string>
+    <string name="add_new_item">Add new item</string>
+    <string name="price">Price</string>
+    <string name="quantity_in_stock">Quantity\nIn Stock</string>
 </resources>
