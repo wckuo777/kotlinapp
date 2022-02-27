@@ -7,11 +7,4 @@
         android:title="@string/action_settings"
         android:icon="@drawable/grid_layout"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/layout2"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        android:icon="@drawable/linear_layout"
-
-        app:showAsAction="never" />
 </menu>

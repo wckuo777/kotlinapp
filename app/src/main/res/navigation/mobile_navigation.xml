@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_homeDetailFragment"
-            app:destination="@id/homeDetailFragment" />
+            app:destination="@id/nav_homeDetail" />
     </fragment>
 
     <fragment
@@ -35,7 +35,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/homeDetailFragment"
+        android:id="@+id/nav_homeDetail"
         android:name="com.example.kotlindemo.ui.home.HomeDetailFragment"
         android:label="Introduction"
         tools:layout="@layout/fragment_home_detail">

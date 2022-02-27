@@ -19,6 +19,6 @@
         <item
             android:id="@+id/nav_friendWebSites"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Websites" />
+            android:title="@string/websites" />
     </group>
 </menu>

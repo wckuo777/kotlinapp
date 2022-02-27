@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="normal">普通</string>
+    <string name="bad_drink">不好喝</string>
+    <string name="excellent">非常好喝</string>
+    <string name="no_comment">尚未評價</string>
+    <string name="websites">相關網站</string>
+</resources>

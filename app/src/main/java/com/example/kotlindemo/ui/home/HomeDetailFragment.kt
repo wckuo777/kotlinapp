@@ -1,8 +1,10 @@
 package com.example.kotlindemo.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -10,9 +12,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
 import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.FragmentHomeDetailBinding
+
 import com.example.kotlindemo.ui.gallery.GalleryViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,7 +34,7 @@ class HomeDetailFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var hominid: String
-    private var _binding: FragmentHomeDetailBinding ? = null
+    private var _binding: FragmentHomeDetailBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by activityViewModels()
 
@@ -51,6 +53,8 @@ class HomeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //activate hide optionMenu (top right menu)
+        setHasOptionsMenu(true)
         //homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         // Inflate the layout for this fragment
         _binding = FragmentHomeDetailBinding.inflate(inflater, container, false)
@@ -66,16 +70,22 @@ class HomeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.detailText.text = homeViewModel.text.value.toString()
         when (homeViewModel.drinksComment.value?.get(hominid.toInt()).toString()){
-            "1" ->  binding.detailText.text = "one"
-            "2" -> binding.detailText.text = "two"
-            "3" -> binding.detailText.text = "three"
-            else -> binding.detailText.text = "You have no comment"
+            "1" ->  binding.detailText.text = getString(R.string.bad_drink)
+            "2" -> binding.detailText.text = getString(R.string.normal)
+            "3" -> binding.detailText.text = getString(R.string.excellent)
+            else -> binding.detailText.text = getString(R.string.no_comment)
         }
         //binding.detailText.text = homeViewModel.drinksComment.value?.get(hominid.toInt()).toString()
         //binding.detailText.text = homeViewModel.drinksComment.
 //        homeViewModel.drinksComment.observe(viewLifecycleOwner, Observer {
 //            binding.detailText.text = "abc"
 //        })
+    }
+
+    // hide optionmenu (top right menu)
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.clear()
     }
 
     companion object {

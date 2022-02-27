@@ -4,28 +4,28 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">Demo by Wei-Cheng Kuo</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">設定(N/A)</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="a1">a1</string>
-    <string name="a2">a2</string>
-    <string name="a3">a3</string>
-    <string name="a4">a4</string>
-    <string name="a5">a5</string>
-    <string name="a6">a6</string>
-    <string name="a7">a7</string>
-    <string name="a8">a8</string>
+    <string name="menu_home">菜單區</string>
+    <string name="menu_gallery">訂單區</string>
+    <string name="menu_slideshow">庫存區</string>
+    <string name="a1">茉莉綠茶</string>
+    <string name="a2">阿薩姆紅茶</string>
+    <string name="a3">四季春青茶</string>
+    <string name="a4">黃金烏龍</string>
+    <string name="a5">檸檬綠</string>
+    <string name="a6">梅綠</string>
+    <string name="a7">奶茶</string>
+    <string name="a8">奶綠</string>
 
-    <string name="a9">a9</string>
-    <string name="a10">a10</string>
-    <string name="a11">a11</string>
-    <string name="a12">a12</string>
-    <string name="a13">a13</string>
-    <string name="a14">a14</string>
+    <string name="a9">檸檬汁</string>
+    <string name="a10">金桔檸檬</string>
+    <string name="a11">檸檬梅汁</string>
+    <string name="a12">檸檬養樂多</string>
+    <string name="a13">冰茶</string>
+    <string name="a14">紅茶拿鐵</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="item_name">品名</string>
@@ -33,22 +33,28 @@
     <string name="item_count">數量</string>
     <string name="order_details">Quantity: %1$s \n Flavor: %2$s \nPickup date: %3$s \n
         Total: %4$s \n\n Thank you!</string>
-    <string name="item">Item</string>
-    <string name="add_new_item">Add new item</string>
-    <string name="price">Price</string>
-    <string name="quantity_in_stock">Quantity\nIn Stock</string>
-    <string name="edit_item">Edit Item</string>
-    <string name="delete">Delete</string>
-    <string name="delete_question">Are you sure you want to delete?</string>
-    <string name="sell">Sell</string>
-    <string name="quantity">Quantity in Stock:</string>
+    <string name="item">項目</string>
+    <string name="add_new_item">新增項目</string>
+    <string name="price">價格</string>
+    <string name="quantity_in_stock">數量\n庫存</string>
+    <string name="edit_item">編輯</string>
+    <string name="delete">刪除</string>
+    <string name="delete_question">確定要刪除?</string>
+    <string name="sell">販售</string>
+    <string name="quantity">庫存量:</string>
     <string name="quantity_req">Quantity in Stock <font color='#FF0000'>*</font></string>
-    <string name="item_name_req">Item Name <font color='#FF0000'>*</font></string>
+    <string name="item_name_req">項目名 <font color='#FF0000'>*</font></string>
     <string name="currency_symbol">$</string>
     <string name="item_price_req">Item Price <font color='#FF0000'>*</font></string>
-    <string name="save_action">Save</string>
+    <string name="save_action">儲存</string>
     <string name="edit_fragment_title">Edit Item</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="add_fragment_title">Add Item23</string>
+    <string name="no">否</string>
+    <string name="yes">是</string>
+    <string name="add_fragment_title">Add Item</string>
+    <string name="no_order_tip">沒有訂單</string>
+    <string name="normal">普通</string>
+    <string name="bad_drink">還行</string>
+    <string name="excellent">非常好喝</string>
+    <string name="no_comment">尚未評價</string>
+    <string name="websites">相關網站</string>
 </resources>

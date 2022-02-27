@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.hide()
             } else if (destination.id == R.id.nav_home) {
                 binding.appBarMain.fab.hide()
-            } else if (destination.id == R.id.nav_slideshow) {
+            } else if (destination.id == R.id.nav_slideshow || destination.id == R.id.nav_homeDetail  ) {
                 binding.appBarMain.fab.hide()
             }
             else if (destination.id == R.id.nav_gallery) {
@@ -91,7 +91,13 @@ class MainActivity : AppCompatActivity() {
                     val b =
                         navHostFragment?.childFragmentManager?.fragments?.get(0) as GalleryFragment
                     val orderString: String = b.observeInput()
-                    if (orderString.isBlank()) {} else {
+                    if (orderString.isBlank()) {
+                        Toast.makeText(
+                            this,
+                            "沒有訂單",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
                         // Create an ACTION_SEND implicit intent with order details in the intent extras
                         val intent = Intent(Intent.ACTION_SEND)
                             .setType("text/plain")
