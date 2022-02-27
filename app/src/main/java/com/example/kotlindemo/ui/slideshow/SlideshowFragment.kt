@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlindemo.InventoryApplication
 import com.example.kotlindemo.InventoryViewModel
@@ -53,9 +54,9 @@ class SlideshowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = SlideshowAdapter {
-//            val action =
-//                ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
-//            this.findNavController().navigate(action)
+            val action =
+                SlideshowFragmentDirections.actionNavSlideshowToItemDetailFragment(it.id)
+            this.findNavController().navigate(action)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.adapter = adapter
@@ -68,10 +69,10 @@ class SlideshowFragment : Fragment() {
         }
 
         binding.floatingActionButton.setOnClickListener {
-//            val action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(
-//                getString(R.string.add_fragment_title)
-//            )
-//            this.findNavController().navigate(action)
+            val action = SlideshowFragmentDirections.actionNavSlideshowToAddItemFragment(
+                getString(R.string.add_fragment_title)
+            )
+            this.findNavController().navigate(action)
         }
     }
 

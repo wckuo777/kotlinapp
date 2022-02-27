@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
@@ -50,6 +51,8 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //activate hide optionMenu (top right menu)
+        setHasOptionsMenu(true)
         galleryViewModel =
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
@@ -245,6 +248,12 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
         })
         return root
+    }
+
+    // hide optionmenu (top right menu)
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.clear()
     }
 
 
