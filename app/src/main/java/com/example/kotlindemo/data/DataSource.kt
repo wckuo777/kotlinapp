@@ -1,28 +1,28 @@
 package com.example.kotlindemo.data
 
-import com.example.kotlindemo.R
+import com.example.kotlindemo.R.drawable
+import com.example.kotlindemo.R.string
 import com.example.kotlindemo.model.DrinksPic
-
 
 
 class Datasource {
 
     fun loadAffirmations(): List<DrinksPic> {
         return listOf<DrinksPic>(
-            DrinksPic(R.string.a1,R.drawable.a1),
-            DrinksPic(R.string.a2,R.drawable.a2),
-            DrinksPic(R.string.a3,R.drawable.a3),
-            DrinksPic(R.string.a4,R.drawable.a4),
-            DrinksPic(R.string.a5,R.drawable.a5),
-            DrinksPic(R.string.a6,R.drawable.a6),
-            DrinksPic(R.string.a7,R.drawable.a7),
-            DrinksPic(R.string.a8,R.drawable.a8),
-            DrinksPic(R.string.a9,R.drawable.a9),
-            DrinksPic(R.string.a10,R.drawable.a10),
-            DrinksPic(R.string.a11,R.drawable.a11),
-            DrinksPic(R.string.a12,R.drawable.a12),
-            DrinksPic(R.string.a13,R.drawable.a13),
-            DrinksPic(R.string.a14,R.drawable.a14)
+            DrinksPic(string.a1, drawable.a1),
+            DrinksPic(string.a2, drawable.a2),
+            DrinksPic(string.a3, drawable.a3),
+            DrinksPic(string.a4, drawable.a4),
+            DrinksPic(string.a5, drawable.a5),
+            DrinksPic(string.a6, drawable.a6),
+            DrinksPic(string.a7, drawable.a7),
+            DrinksPic(string.a8, drawable.a8),
+            DrinksPic(string.a9, drawable.a9),
+            DrinksPic(string.a10, drawable.a10),
+            DrinksPic(string.a11, drawable.a11),
+            DrinksPic(string.a12, drawable.a12),
+            DrinksPic(string.a13, drawable.a13),
+            DrinksPic(string.a14, drawable.a14)
         )
     }
 
@@ -33,30 +33,31 @@ class Datasource {
             )
     }
 
-    fun loadSpinnerItem(): LinkedHashMap<Int,String>{
+    fun loadSpinnerItem(): LinkedHashMap<Int, String>{
         val linkedHashMap = LinkedHashMap<Int, String>()
-        linkedHashMap.put(0,"select drink")
-        linkedHashMap.put(1,"a1 drink")
-        linkedHashMap.put(2,"a2 drink")
-        linkedHashMap.put(3,"a3 drink")
-        linkedHashMap.put(4,"a4 drink")
-        linkedHashMap.put(5,"a5 drink")
-        linkedHashMap.put(6,"a6 drink")
-        linkedHashMap.put(7,"a7 drink")
-        linkedHashMap.put(8,"a8 drink")
-        linkedHashMap.put(9,"a9 drink")
-        linkedHashMap.put(10,"a10 drink")
-        linkedHashMap.put(11,"a11 drink")
-        linkedHashMap.put(12,"a12 drink")
-        linkedHashMap.put(13,"a13 drink")
+        linkedHashMap.put(0,"選擇項目")
+        linkedHashMap.put(1,"茉莉綠茶")
+        linkedHashMap.put(2,"阿薩姆紅茶")
+        linkedHashMap.put(3,"四季春青茶")
+        linkedHashMap.put(4,"黃金烏龍")
+        linkedHashMap.put(5,"檸檬綠")
+        linkedHashMap.put(6,"梅綠")
+        linkedHashMap.put(7,"奶茶")
+        linkedHashMap.put(8,"奶綠")
+        linkedHashMap.put(9,"檸檬汁")
+        linkedHashMap.put(10,"金桔檸檬")
+        linkedHashMap.put(11,"檸檬梅汁")
+        linkedHashMap.put(12,"檸檬養樂多")
+        linkedHashMap.put(13,"冰茶")
+        linkedHashMap.put(13,"紅茶拿鐵")
         return linkedHashMap
     }
 
     fun loadSpinnerItemSize(): LinkedHashMap<Int,String>{
         val linkedHashMap = LinkedHashMap<Int, String>()
-        linkedHashMap.put(0,"select size")
-        linkedHashMap.put(1,"M")
-        linkedHashMap.put(2,"L")
+        linkedHashMap[0] = "選擇尺寸"
+        linkedHashMap[1] = "M"
+        linkedHashMap[2] = "L"
         return linkedHashMap
     }
 

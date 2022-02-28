@@ -3,6 +3,7 @@ package com.example.kotlindemo.ui.slideshow
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -43,6 +44,8 @@ class AddItemFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //activate hide optionMenu (top right menu)
+        setHasOptionsMenu(true)
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -69,6 +72,12 @@ class AddItemFragment: Fragment() {
             itemCount.setText(item.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateItem() }
         }
+    }
+
+    // hide optionmenu (top right menu)
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.clear()
     }
 
     /**

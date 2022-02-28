@@ -51,7 +51,7 @@
     <fragment
         android:id="@+id/itemDetailFragment"
         android:name="com.example.kotlindemo.ui.slideshow.ItemDetailFragment"
-        android:label="fragment_item_detail"
+        android:label="項目資訊"
         tools:layout="@layout/fragment_item_detail" >
         <argument
             android:name="item_id"
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.example.kotlindemo.ui.slideshow.AddItemFragment"
-        android:label="AddItemFragment" >
+        android:label="項目管理" >
         <argument
             android:name="title"
             app:argType="string" />

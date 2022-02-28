@@ -63,7 +63,8 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.hide()
             } else if (destination.id == R.id.nav_home) {
                 binding.appBarMain.fab.hide()
-            } else if (destination.id == R.id.nav_slideshow || destination.id == R.id.nav_homeDetail  ) {
+            } else if (destination.id == R.id.nav_slideshow || destination.id == R.id.nav_homeDetail
+                || destination.id == R.id.addItemFragment || destination.id == R.id.itemDetailFragment  ) {
                 binding.appBarMain.fab.hide()
             }
             else if (destination.id == R.id.nav_gallery) {

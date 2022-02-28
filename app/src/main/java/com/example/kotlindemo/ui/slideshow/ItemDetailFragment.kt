@@ -2,6 +2,7 @@ package com.example.kotlindemo.ui.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -36,6 +37,8 @@ class ItemDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //activate hide optionMenu (top right menu)
+        setHasOptionsMenu(true)
         _binding = FragmentItemDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -71,7 +74,7 @@ class ItemDetailFragment : Fragment() {
      */
     private fun showConfirmationDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setTitle(getString(R.string.dialog_alert_title))
             .setMessage(getString(R.string.delete_question))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.no)) { _, _ -> }
@@ -99,6 +102,12 @@ class ItemDetailFragment : Fragment() {
             item = selectedItem
             bind(item)
         }
+    }
+
+    // hide optionmenu (top right menu)
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.clear()
     }
 
     /**
