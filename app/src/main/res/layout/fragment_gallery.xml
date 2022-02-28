@@ -93,7 +93,7 @@
         android:nextFocusUp="@+id/editTextNumber"
         android:nextFocusDown="@+id/listView"
         android:singleLine="true"
-        android:text="Button"
+        android:text="@string/add_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

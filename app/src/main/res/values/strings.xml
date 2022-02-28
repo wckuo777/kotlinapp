@@ -60,4 +60,5 @@
     <string name="select_drink">選擇項目</string>
     <string name="select_size">選擇尺寸</string>
     <string name="dialog_alert_title">提示</string>
+    <string name="add_button">加入訂單</string>
 </resources>

@@ -1,9 +1,7 @@
 package com.example.kotlindemo.ui.gallery
 
 import android.R
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
@@ -30,7 +28,6 @@ import com.example.kotlindemo.model.DataGroup
 import com.example.kotlindemo.model.SpinnerItem
 import com.example.kotlindemo.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
-import java.nio.file.Files.delete
 
 
 class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
@@ -82,7 +79,7 @@ class GalleryFragment() : Fragment(), AdapterView.OnItemSelectedListener {
 
                 Toast.makeText(
                     context,
-                    "No order in list ~",
+                    "沒有訂單",
                     Toast.LENGTH_SHORT
                 ).show()
             else {
