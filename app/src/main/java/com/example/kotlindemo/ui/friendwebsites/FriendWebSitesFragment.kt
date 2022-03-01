@@ -38,6 +38,7 @@ class FriendWebSitesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FriendWebSitesFragmentBinding.inflate(inflater, container, false)
+        val progressBar = _binding!!.progressBar
         val mWebView = _binding!!.mywebview
         mWebView.loadUrl("https://wckuo777.github.io/webdemo")
 
@@ -57,6 +58,7 @@ class FriendWebSitesFragment : Fragment() {
             }
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
+                progressBar.visibility = View.GONE
             }
         }
 //        (activity as AppCompatActivity).supportActionBar?.hide()
