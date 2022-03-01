@@ -44,10 +44,10 @@ class FriendWebSitesFragment : Fragment() {
 
 
 
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            Runnable { mWebView.loadDataWithBaseURL("https://wckuo777.github.io/webdemo", "", "text/html", "UTF-8", null) }
-        }, 1000)
+        // delay to load
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            Runnable { mWebView.loadDataWithBaseURL("https://wckuo777.github.io/webdemo", "", "text/html", "UTF-8", null) }
+//        }, 10)
 
         val webSettings = mWebView.settings
         webSettings.javaScriptEnabled = true
