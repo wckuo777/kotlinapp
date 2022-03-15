@@ -22,6 +22,8 @@ import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.ui.gallery.GalleryFragment
 import com.example.kotlindemo.ui.gallery.GalleryViewModel
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
 import com.google.android.material.navigation.NavigationView
 
 
@@ -62,6 +64,9 @@ class MainActivity : AppCompatActivity() {
                 binding.appBarMain.fab.hide()
                 supportActionBar?.hide()
             } else if (destination.id == R.id.nav_home) {
+                binding.appBarMain.toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
+                    scrollFlags = SCROLL_FLAG_SCROLL or SCROLL_FLAG_ENTER_ALWAYS
+                }
                 binding.appBarMain.fab.hide()
             } else if (destination.id == R.id.nav_slideshow || destination.id == R.id.nav_homeDetail
                 || destination.id == R.id.addItemFragment || destination.id == R.id.itemDetailFragment  ) {
